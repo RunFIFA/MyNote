@@ -1,0 +1,4 @@
+打开程序："路径\进程名.exe"
+
+如：cmd→"C:\Program Files\Tencent\QQ\Bin\QQ.exe"
+

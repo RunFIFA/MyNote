@@ -1,0 +1,11 @@
+﻿创建、修改、删除组
+
+命令"groupadd"用以创建组：
+  groupadd groupname
+
+命令"groupmod"用以修改组信息：
+  groupmod -n newname oldname ----修改组名
+  groupmod -g newGid oldGid ------修改组ID
+
+命令"groupdel"用以删除组：
+  groupdel groupname

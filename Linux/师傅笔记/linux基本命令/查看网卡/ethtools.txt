@@ -1,0 +1,5 @@
+﻿命令"ethtool"可以查看网卡设置：
+
+ethtools eth0-------查看网卡物理特性
+ethtools -i eth0----查看网卡驱动信息
+ethtools -S eth0----查看网卡状态

@@ -1,0 +1,3 @@
+语法："explorer 地址" 或者 "start explorer 地址"
+
+例：start explorer http://baidu.com

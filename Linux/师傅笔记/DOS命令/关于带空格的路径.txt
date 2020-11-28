@@ -1,0 +1,11 @@
+关于带空格的路径。
+
+想在我的文档中新建个名字为hello的文件夹。
+
+md C:\Documents and Settings\Administrator\My Documents\hello（No）
+
+md "C:\Documents and Settings\Administrator\My Documents\hello" （yes）
+
+小问题：你得为带空格的路径加上英文双引号。
+
+

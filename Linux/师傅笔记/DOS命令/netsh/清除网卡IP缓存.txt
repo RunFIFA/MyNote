@@ -1,0 +1,1 @@
+cmd------>netsh------->int------->ip------->reset reset.txt

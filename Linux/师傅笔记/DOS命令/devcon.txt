@@ -1,0 +1,12 @@
+devcon是一个外部dos命令，可以启用、禁用、重新启动、更新、删除和查询单个设备或一组设备。
+
+用法：
+devcon查询pci设备：
+
+输入：devcon find pci\*
+
+#列出本地计算机上所有已知的PCI 设备,如下，这是本人的网卡一行：
+
+PCI＼VEN_13F0&DEV_0201&SUBSYS_020113F0&REV_14＼3&13C0B0C5&0&48: Sundance ST201 based PCI Fast Ethernet Adapter #3
+
+记下第一个&和第二个&之间的设备代码，例如我的网卡就是：DEV_0201

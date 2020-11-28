@@ -1,0 +1,14 @@
+﻿rename，更改文件（包括目录）名称命令。
+
+语法：rename 原文件名 新文件名 源文件
+
+例1：更改/home/data名为backup 
+
+命令：rename data backup /home/data 或：rename /home/data /home/backup /home/data
+
+例2：有一批文件，都是以log开头的，log001.txt，log002.txt ....... 一直到log100.txt
+现在想要把这批文件的log全部替换为 history 
+
+命令：rename  log  history  log* 
+
+这样替换后的文件是： history001.txt，history002.txt ..... 一直到 history100.txt

@@ -1,0 +1,10 @@
+显示名称(服务名称)——作用
+telnet(tlntsvr)——dos远程登录
+secondary logon(seclogin)——dos远程登录验证
+server(lanmanserver)——网络文件、打印共享
+messenger(messenger)——net send发送、接收消息
+task scheduler(schedule)——启用"任务计划"
+print spooler(spooler)——添加打印机
+[Windows Firewall/Internet Connection Sharing (ICS)](sharedaccess)——系统自带防火墙
+DHCP Client(dhcp)——dhcp
+DNS Client(dnscache)——dns

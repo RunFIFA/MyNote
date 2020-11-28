@@ -1,0 +1,19 @@
+﻿更改目录的所有者、群组
+
+例1：更改"/home/share"的所有者为root
+
+    命令：chown root /home/share
+
+例2：更改"/home/share"的群组root
+
+    命令：chown :root /home/share
+
+例3：更改"/home/share"的所有者和群组都为root
+
+    命令：chown root:root /home/share （注意："root" 与 ":root"间没有空隔）
+
+常用参数"-R"--递归处理所有的文件及子目录
+
+例4：将 /home/share 及其子目录下所有文件的“所有者”和“群组”更改为"root"
+
+    命令：chown root:root /home/share －R

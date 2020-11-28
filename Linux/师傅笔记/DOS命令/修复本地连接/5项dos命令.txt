@@ -1,0 +1,5 @@
+1.清除arp缓存——arp -d
+2.清除netBT——netsh int ip reset c:\tmp.txt
+3.刷新netBT——nbtstat -R
+4.清除DNS缓存——ipconfig /flushdns
+5.重新注册DNS——ipconfig /registerdns

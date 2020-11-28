@@ -1,0 +1,11 @@
+允许用户用其他权限运行指定的工具和程序，而不是用户当前登录提供的权限。
+
+语法：runas /user:运行程序的用户  所要运行的程序
+
+例：在guest用户里用管理员权限运行cmd.exe——runas /user:administrator cmd
+
+
+
+批处理时自动输入密码,使用/savecred参数。
+
+例：runas /savecred /user:administrator cmd.exe，回车后输入密码并确认，第一次使用参数"/savecred"它会记住该用户的密码，以后用此用户执行命令时加上参数"/savecred"就会自动输入密码，比如现在执行 "runas /savecred /user:administrator c:\program files\Tencent\QQ\bin\qq.exe"，回车后就会立即运行QQ程式，不会再提示输入密码。

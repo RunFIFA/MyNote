@@ -1,0 +1,7 @@
+sc delete "服务名"
+
+例:删除qqin服务——
+
+  C:\Documents and Settings\Administrator>sc delete qqian
+  
+  出现"[SC] DeleteService 成功"表删除服务成功。

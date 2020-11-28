@@ -1,0 +1,54 @@
+ windows 连接 linux 
+
+用puttry 输入ip连接 端口默认 22
+
+
+ windows 设置无密码自动登陆 
+
+   cmd
+   
+   reg add "hklm\software\microsoft\windows nt\currentversion\winlogon" /v DefaultPassword /t reg_sz /d 123456
+    把Administrator帐号的密码改成 123456
+
+    输入命令regedit 打开
+    会有 DefaultDomainName   Administrator
+	 DefaultUserName     Administrator
+         AutoAdminlogon      1  
+  
+    计算机名改为luo
+    
+
+
+
+ linux远程
+ssh -p 77 user@192.168.0.256 （ip地址 ）
+
+
+ 远程拷贝
+scp -rp (-P 77) /home/data/text.tar.gz root@192.168.1.254:/home/data/ (本地文件拷贝到192...256)
+scp -rp (-P 77) root@192.168.1.254:/home/data/test.tar.gz /home/data/ (192...256文件拷贝到本地)
+-p 保持文件原属性
+-P 77  ssh的端口号
+
+输入192...256的password
+-q 拷贝中不提示消息
+-v拷贝中提醒消息
+-r拷贝目录
+
+
+ linux 连接 windows
+
+使用freerdp工具
+ 
+ yum -y install freerdp
+ xfreerdp -u administrator -p 123456 -f 192.168.0.254 (windows的ip)
+ 
+ 若端口非默认88  是3389
+ xfreerdp -u administrator -p 123456 -f 192.168.0.254:3389 (windows的ip)
+
+或用 rdesktop
+  yum -y install rdesktop
+  rdesktop -u administrator -p 123456 -f 192.168.0.254 (windows的ip)
+
+
+

@@ -1,0 +1,15 @@
+﻿rdesktop,linux桌面下用来远程windows桌面的工具。
+
+常用命令参数：
+
+-u ----登录用户
+
+-p ----登录密码
+
+-r sound:local ----把远程主机的声音带到本地
+
+-g ----设置屏幕大小，后跟屏幕分辨率
+
+-f ----全屏模式，任何时候按ctrl+alt+enter，可退出全屏
+
+如：rdesktop -u administrator -p 123456 -r sound:local 192.168.1.254

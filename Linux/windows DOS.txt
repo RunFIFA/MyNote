@@ -1,0 +1,7 @@
+windows 用户管理
+
+添加用户 net user luo(用户名) aa(密码) /add
+删除用户 net user luo /del
+修改密码 net user luo bb(新密码)
+修改用户状态 net user administrator /active:y(n)
+

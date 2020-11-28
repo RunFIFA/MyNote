@@ -1,0 +1,11 @@
+禁用：
+netsh interface set interface name="本地连接" admin=disabled
+或：
+netsh interface set interface "本地连接" admin=disabled
+
+启用：
+netsh interface set interface name="本地连接" admin=enable
+或：
+netsh interface set interface "本地连接" admin=enable
+
+注意：其中的"本地连接"就是你电脑所对应的网卡名称。

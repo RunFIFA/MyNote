@@ -1,0 +1,7 @@
+修改注册表里的默认字符串值项，输入的名称是""（一对英文式的双引号），而不是“(默认)”。
+
+例如：修改“HKEY_CLASSES_ROOT\CLSID\{B416D21B-3B22-B6D4-BBD3-BBD452DB3D5B}”里字符串值项的值为“Internet Explorer”
+
+正确：reg add "HKCR\CLSID\{B416D21B-3B22-B6D4-BBD3-BBD452DB3D5B}" /v "" /t reg_sz /d "Internet Explorer"
+
+错误：reg add "HKCR\CLSID\{B416D21B-3B22-B6D4-BBD3-BBD452DB3D5B}" /v "(默认)" /t reg_sz /d "Internet Explorer"

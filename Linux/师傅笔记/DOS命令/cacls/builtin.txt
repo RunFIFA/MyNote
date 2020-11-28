@@ -1,0 +1,1 @@
+ Builtin是built in的意思，表示内建帐户。也即表示Windows的Administrator用户组。

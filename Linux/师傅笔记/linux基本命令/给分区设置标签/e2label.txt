@@ -1,0 +1,7 @@
+﻿命令e2label可以用来为文件系统添加标签。
+
+e2label /dev/sda3 ----显示sda2的系统标签
+
+e2label /dev/sda3 DATA ----将sda2的系统标签设置为"DATA"
+
+注意：标签一般是无所谓大小写的，但建议用大写。

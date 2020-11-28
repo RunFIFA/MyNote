@@ -1,0 +1,19 @@
+﻿修改文件所属用户、组
+
+命令"chown"用以改变文件的所属用户：
+  chown 用户名 目录或文件
+
+例：文件"linuxcast.net"目前的所属用户是"root"，将其所属用户改为"nash_su":
+   chown nash_su linuxcast.net
+
+-R参数递归修改目录下面的所有文件的所属用户。
+
+
+
+命令"chgrp"用以改变文件的所属组：
+  chgrp 组名 目录或文件
+
+例：文件"linuxcast.net"目前的所属组是"root"，将其所属组改为"nash_su":
+   chgrp nash_su linuxcast.net
+
+-R参数递归的修改目录下的所有文件的所属组。

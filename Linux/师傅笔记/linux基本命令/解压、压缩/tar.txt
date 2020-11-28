@@ -1,0 +1,25 @@
+﻿tar，归档命令。
+
+常用参数：
+-c 建立新的归档文件
+-C 转到指定的目录
+-r 向归档文件末尾追加文件
+-x 从归档文件中解出文件
+-O 将文件解开到标准输出
+-v 处理过程中输出相关信息
+-f 对普通文件操作
+-z 调用gzip来压缩归档文件，与-x联用时调用gzip完成解压缩
+-Z 调用compress来压缩归档文件，与-x联用时调用compress完成解压缩
+
+创建归档文件：tar -cvf 要创建的名称.tar 要添加到归档文件的文件或文件夹
+如：tar -cvf etc_bak.tar /etc
+
+释放归档文件：tar -xvf 归档文件.tar
+如：tar -xvf etc_bak.tar
+
+加"-z"参数可以将归档后的归档文件进行gzip压缩，成为一个压缩归档文件。
+
+创建压缩归档文件：tar -zcvf 要创建的文件名称.tar.gz  要添加的文件或文件夹
+如：tar -zcvf etc_bak.tar.gz /etc
+
+释放文件：tar -zxvf etc_bak.tar.gz

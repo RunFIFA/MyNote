@@ -1,0 +1,1 @@
+例：del 1.txt,2.txt,3.txt 或 del 1.txt 2.txt 3.txt

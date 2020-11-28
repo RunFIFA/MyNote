@@ -1,0 +1,18 @@
+﻿关机、重启
+
+命令shutdown用以关闭、重启计算机
+
+参数：
+-h ——关闭计算机
+-r ——重新启动
+
+如：
+立即关机：shutdown -h now
+10分钟后关机：shutdown -h +10
+23:30关机：shutdown -h 23:30
+立即重启：shutdown -r now
+
+
+命令poweroff用以立即关闭计算机
+
+命令reboot用以立即重启计算机

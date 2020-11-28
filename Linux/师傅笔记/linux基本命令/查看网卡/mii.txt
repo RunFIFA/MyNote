@@ -1,0 +1,10 @@
+﻿命令"mii-tool"用以查看网卡状态，查看网卡的一些底层信息，如：
+
+mii-tool eth0
+
+eth0: negotiated 100baseTx-FD flow-control, link ok
+
+结果说明：
+         netgotiated-----自动协商模式（10M或100M自动转换）
+         100baseTx-FD----当前工作速率是全双工100M，FD(FullDuplex)
+         link ok---------网线是连接的

@@ -1,0 +1,109 @@
+man man 
+
+PAGE UP  或空格 向下翻页
+PAGE DOWN 向上翻页
+HOME 顶页
+END 尾页
+？或 / 加关键字 查找( N  n 上下个关键字)
+
+
+date 时间
+
+
+uname -a 系统内核信息
+
+
+watch -n 1 uptime 每分钟更新系统负载情况
+
+
+free -mh 内存使用情况
+
+
+who 查看登录者
+
+
+last 登录记录
+
+
+hisory 历史执行命令 
+histiry -c 清除历史命令
+
+
+sosreport 输出系统诊断结论
+
+
+cd ~  家
+cd / 根
+cd .. 上一层
+cd - 上一次的目录
+
+
+ls -a 查看隐藏
+ls -l (ll) 详细
+
+
+cat -b aa 查看文本
+more aa
+head -n 20 aa 看前20行
+tail -n 20 aa 看后20行
+od aa 特殊文本
+
+
+
+wc (-l(只显示行数)  -w(只显示单词数)  -c(只喜爱嗯)) aa 查看文本
+
+
+
+touch aa 创建文本
+touch -d '2 days ago' aa 修改 访问和更改时间为2天前
+touch -d '3 years ago' aa  修改为3天前
+
+
+touch -d "15:41 12/22/2012" userdata.img
+
+
+
+
+
+mkdir (-m 755(赋予权限)) aa 创建文件夹
+mkdir -p a/b/c/d 连续创建多层文件夹
+
+
+cp -a /a /b  复制文件  (-a = -pdr p(保留原属性) r(复制目录) d(保留连接文件属性)) 
+
+
+mv /a /b 移动文件
+mv aa bb 重命名
+
+
+rm -rf 删除文件  (-r删除文件夹 -f忽略警告)
+
+
+rmdir 删除空文件夹
+
+
+dd if=a.txt of=a.iso 转化文件格式 (if=输入原文件 of=输出文件)
+
+
+useradd -d /home/luo -u 888 -e 07/30/17 创建用户
+(-d指定家目录 -u指定UID -e到期时间(YYYY-MM-DD))
+userdel -rf 强制删除用户所有
+usermod 修改状态
+passwd aa 修改aa的密码
+passwd -l -u -d -S aa
+(-l禁止登录 -u允许登录 -d五密码 -S查看密码状态)
+
+
+tar -czvf bb.tar aa (将aa压缩成bb.tar)
+tar -xzvf bb.tar.gz ./aa  (解压bb.tar.gz在aa中)
+
+
+grep host aa  在aa文本中查找host的关键字
+find /aa -name "*host*" -print  在aa下寻找含有host的文件
+
+
+vim使用
+dd删除行
+:set nu 显示行数
+:set nonu 不显示行数
+

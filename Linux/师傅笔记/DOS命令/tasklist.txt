@@ -1,0 +1,6 @@
+"Tasklist"是 winxp/win2003/vista/win7/win8下的命令,用来显示运行在本地或远程计算机上的所有进程，带有多个执行参数。
+
+在cmd下输入"tasklist"不带任何参数时,表示查看本地计算机的所开启的进程.
+
+也可用此命令查看远程计算机的进程,格式如下:
+tasklist /s IP /u domain\user /p password

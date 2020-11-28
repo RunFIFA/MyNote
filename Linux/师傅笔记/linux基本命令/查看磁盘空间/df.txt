@@ -1,0 +1,33 @@
+﻿df命令用来检查文件系统的磁盘空间占用情况，使用权限是所有用户。
+
+1.语法：df ----显示所有磁盘分区(除swap分区)的使用情况。
+
+如：
+
+[root@yamamoto ~]# df
+Filesystem     1K-blocks      Used Available Use% Mounted on
+/dev/sda1       34060032   7191092  25138792  23% /
+tmpfs             969632         0    969632   0% /dev/shm
+/dev/sda3      204238648  92752516 101111324  48% /home
+/dev/sdb1      480719056 182802672 273497184  41% /data
+
+"1K-blocks"列表示磁盘的总大小，"Used"表示已使用大小，"Available"表示剩余空间大小，"Use%"表示已使用率，"Mounted on"表示挂载点。默认表示大小的单位是"k"，如"/dev/sda1"的总大小是34060032k。
+
+常用参数：
+
+-k：以“千字节(KB)”为单位列出磁盘空间使用情况。(此参数可以忽略，因为默认表示大小的单位就是"k")
+-m：以"M"为单位列出磁盘空间使用情况。
+-h：以容易理解的格式印出文件系统大小，例如136KB、24MB、21GB。
+-T：显示文件系统类型。
+
+2.语法：df 指定分区名称(或指定分区的挂载点名称)----查看指定分区的使用情况。
+
+如：
+
+[root@yamamoto ~]# df -hT /dev/sda1
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/sda1      ext4   33G  6.9G   24G  23% /
+
+[root@yamamoto ~]# df -hT /
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/sda1      ext4   33G  6.9G   24G  23% /

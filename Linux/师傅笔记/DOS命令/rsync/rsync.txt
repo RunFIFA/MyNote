@@ -1,0 +1,82 @@
+Win2003配置rsync服务端
+
+一、安装cwRsyncServer
+安装cwRsyncServer时，有一步骤会出现提示创建一个用户"SvcCWRSYNC"，这里可以保持默认继续安装，或输入一个当前系统现有的用户，不管是默认生成新用户或是用现有的用户意义都不大，都不会影响后面的配置工作，因为目的只是选择一个用户用来管理备份的源目录而以，这里我输入一个当前系统现有的用户"rise" 。
+
+二、开启"RsyncServer"服务
+cwRsyncServer安装完成后，系统会生成一个"RsyncServer"服务，将此服务开启并设置开机启动。
+
+三、创建备份源目录
+这里我在D盘下创建一个名为"data"的文件夹，用来做备份的源目录。
+
+四、设置源目录的权限
+这里与上面的第一步关联，上面选择是以用户"rise"来管理备份源目录，所以设置"D:\data"给用户"rise"的权限是"完全控制"，即所有权限。
+
+五、设置配置文件"rsyncd.conf"
+打开"cwRsyncServer"安装目录"C:\Program Files\ICW"，用记事本打开"rsyncd.conf"，修改添加以下内容（修改之前建议先备份rsyncd.conf）：
+
+use chroot = false
+strict modes = false
+hosts allow = *
+log file = rsyncd.log
+
+# Module definitions
+# Remember cygwin naming conventions : c:\work becomes /cygwin/c/work
+#
+[data]
+path = /cygdrive/d/data
+auth users = rise
+secrets file = etc/rsyncd.secrets
+
+修改好后保存退出！
+
+六、创建认证文件"rsyncd.secrets"，内容如下：
+
+Rise:20151124
+
+内容其实就是认证用的用户与密码，填写格式是"用户:密码"。
+
+OK，到这里，win2003做rsync服务器端的配置已完成！
+
+这时不管客户端是linux还是windows，都可以对该服务器的"D:\data"进行备份了。
+
+客户端设置：
+客户端是windows系统的，需要安装"rsync"的客户端工具"cwRsync"，执行命令前得dos命令符工作目录切换到"C:\Program Files\cwRsync\bin"下。
+
+例子：
+假设服务端IP是"192.168.1.254"
+
+例1：客户端win7将服务器端的"D:\data"下的内容备份到"E:\backup"目录下，操作如下：
+
+1.调出dos命令符
+2.切换到"C:\Program Files\cwRsync\bin"
+3.输入以下命令：rsync -zva --stats --progress --delete rise@192.168.1.254::data /cygdrive/e/backup ，回车后输入密码"20151124"，OK，完成备份。
+
+注意：要是"E:\backup"目录不存在，备份时会自动生成并备份，备份目标目录的路径目录前必须得有"/cygdrive"，否则不能备份，备份目标目录的格式是：/cygdrive+分区+目录。
+
+例2：客户端ubuntu14.04将服务端的"D:\data"下的内容备份到"/home/backup"目录下，命令如下：
+
+rsync -zva --stats --delete rise@192.168.1.254::data /home/backup ，回车，输入认证密码，完成。
+
+
+
+以上用的是认证方式连接远程服务器进行备份的，也可以实现不需要认证的方式进行备份，方法是修改rsyncd.conf配置文件，修改内容如下：
+
+gid = 0
+uid = 0
+use chroot = false
+strict modes = false
+hosts allow = *
+log file = rsyncd.log
+
+# Module definitions
+# Remember cygwin naming conventions : c:\work becomes /cygwin/c/work
+#
+[data]
+path = /cygdrive/d/data
+
+保存，退出。
+
+这样就可以不用认证了，如：
+
+rsync -zva --stats --progress --delete rise@192.168.1.254::data /cygdrive/e/backup ，按回车后即可进行备份，无需输入密码！

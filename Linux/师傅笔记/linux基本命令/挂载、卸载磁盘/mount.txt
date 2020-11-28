@@ -1,0 +1,35 @@
+﻿在Linux中，我们通过mount命令将格式化好的磁盘或分区挂载到一个目录上。
+
+语法：mount  /dev/sda3(要挂载的分区)  /mnt(挂载点)
+
+常用参数：
+
+不带参数的mount命令会显示所有已挂载的文件系统
+
+-t 指定文件系统的类型
+
+-o 指定挂载选项：
+
+  ro,rw 以只读或读写形式挂载，默认是rw
+
+  sync 代表不使用缓存，而是对所有操作直接写入磁盘
+
+  async 代表使用缓存，默认是async
+
+  noatime 代表每次访问文件时不更新文件的访问时间
+
+  atime 代表每次访问文件时更新文件的访问时间
+
+  remount 重新挂载文件系统
+
+例如：以只读方式重新挂载/dev/sda3到/mnt下，则命令为：mount -o remount,ro
+/dev/sda3 /mnt
+
+注：命令里出现多个参数则用","分开。
+
+
+ubuntu挂载cifs类型磁盘时，只能读不能写，只有用sudo时才能写入，即只有root才有写入的权限，普通用户没有。怎么让普通用户也有写入的权限呢？
+
+方法：在挂载时，挂载选项里加入"file_mode=0777,dir_mode=0777"这两项就可以了。
+
+如：mount //10.4.7.7/d$ /home/share -t cifs -o user=administrator,password=123456,file_mode=0777,dir_mode=0777

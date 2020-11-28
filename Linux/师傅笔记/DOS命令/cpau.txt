@@ -1,0 +1,37 @@
+﻿cpau的用法：
+
+使用场合：不想给用户管理员权限，但是有些程序运行时需要管理员权限。
+
+基本参数：
+
+-u     执行该命令的用户名，域环境需要全称Domain\users
+
+-p     该用户的密码
+
+-ex    需要执行的程序路径，最好加上双引号
+
+-enc   加密"-file"指定的文件
+
+-file  指定一个文件（文件的后辍在这里没有多大意义，为了规范就用txt文本格式吧），并指定保存路径
+
+-dec   解密"-file"指定的文件
+
+-lwp   交互式认证（调用加密文件，解密时必用）
+
+
+例如：以administrator用户身份打开QQ，步骤：
+
+1.先用cpau制定一个cmd命令符方式打开QQ的一个加密文件：
+cpau -u administrator -p 123456 -ex "C:\Program Files\Tencent\QQ\Bin\qq.exe" -enc -file d:\qq.txt
+
+2.然后再用cpau去解密并调用这个加密文件即可，如：
+cpau -dec -file d:\qq.txt -lwp
+
+
+例2：修改系统时间
+
+1.制定加密文件
+cpau -u administrator -p 123456 -ex "cmd /c time 15:55" -enc -file d:\time
+
+2.解密并调用
+cpau -dec -file d:\time -lwp

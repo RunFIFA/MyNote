@@ -1,0 +1,1 @@
+﻿pwd(print work directory)----显示当前的工作目录

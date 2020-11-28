@@ -1,0 +1,35 @@
+rar.exe是dos用来添加和解压压缩文件的一个外部命令，前提是windows必须装有winrar。
+
+添加压缩文件：
+
+语法：rar a "定义压缩文件名称" "源目录\文件"
+
+例1：将"d:\test"做成一个名为"test.rar(或test.zip)"的压缩文件。
+
+     命令：rar a "test.rar(或test.zip)" "d:\test"
+
+
+注意：生成的压缩文件在当前运行命令符的目录里，如：c:\>rar a "test.rar" "d:\test"，当前运行命令符的目录是"c:\"，生成的"test.rar"就在c盘根下。
+
+
+例2：将"d:\music\tourist.mp3"与"e:\kugou\nurse.mp3"压缩成一个"mp3.rar"文件。
+
+     命令：rar a mp3.rar "d:\music\tourist.mp3" "e:\kugou\nurse.mp3"
+
+
+例3：将"d:\music"与"e:\kugou"里所有的mp3文件压缩成一个"mp3.rar"文件。
+
+     命令：rar a "mp3.rar" "d:\music\*.mp3" "e:\kugou\*.mp3"
+
+
+
+解压压缩文件：
+
+语法：rar x "源压缩文件" "目标目录\"
+
+例：解压"d:\data.rar"到有"e:\file\"
+
+    rar x "d:\data.rar" "e:\file\"
+
+
+注意："e:\file"如果不存在时，解压时会自动生成。若不注明目标目录，"data.rar"里的内容将会释放到当前运行命令符的目录里。

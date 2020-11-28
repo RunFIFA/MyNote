@@ -1,0 +1,46 @@
+sl / sl -l
+
+tel net
+
+fortune
+
+cowsay (-f mlik)  'hehehe'
+
+fortune | cowsay
+
+cmatrix
+
+figlet  toilet
+
+toilet -f mono12 -F gay a girl
+toilet -f bigmono9 -F gay a girl
+
+oneko
+
+xeyes
+
+bb
+
+sudo apt-get install libaa-bin
+aafire
+
+
+~# cd /tmp
+~# wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+~# tar -zxvf asciiquarium.tar.gz
+~# cd asciiquarium_1.1/
+~# cp asciiquarium /usr/local/bin
+~# chmod 0755 /usr/local/bin/asciiquarium
+
+asciiquarium
+
+
+
+https://linux.cn/article-2831-4.html
+
+
+
+
+shred a (粉碎文件)
+
+aptitude (软件管理)

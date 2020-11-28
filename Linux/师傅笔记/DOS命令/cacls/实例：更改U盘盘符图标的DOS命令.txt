@@ -1,0 +1,43 @@
+更改U盘盘符图标的DOS命令
+
+具体手动更改方法是：
+ 
+1、把*.ICO图标文件复制到U盘；
+2、在U盘下创建autorun.inf文件，输入下面红色内容如下：
+ 
+[autorun]
+icon=*.ico
+ 
+然后保存；
+3、在DOS命令提示符窗口或运行中执行以下两条命令：（假设u盘盘符为K）
+ 
+attrib K:\autorun.inf +r +h +s        赋予autorun.inf只读、隐藏、系统属性
+attrib K:\*.ico +r +h +s                 赋予*.ico只读、隐藏、系统属性
+ 
+自此，弹出U盘并重新插入，你会发现U盘的图标已经改变了，如果插到别人的机子上，别人一定会羡慕几分的。
+ 
+4、如果你想让别人无法删除autorun.inf和*.ico，还可以使用以下两条命令，但前提是你的U盘格式必须是ntfs。
+ 
+cacls k:\autorun.inf /p everyone:n      禁止所有用户访问autorun.inf
+cacls k:\autorun.inf /p everyone:r      赋予所有用户读取autorun.inf的权利，写入、删除权利除外
+cacls k:\*.ico /p everyone:n                禁止所有用户访问*.ico
+cacls k:\*.ico /p everyone:r                 赋予所有用户读取*.ico的权利，写入、删除权利除外
+ 
+经过以上设置，所有用户只能读取autorun.inf和*.ico，而不能修改或删除他们，甚至还可以预防一些低级的autorun.inf病毒入侵你的U盘。如果哪天你发现U盘图标改变了，就说明你八成中了autorun.inf病毒，赶快对你的U盘和电脑进行杀毒吧！
+ 
+5、删除U盘图标的方法：
+ 
+cacls k:\autorun.inf /p everyone:f     赋予所有用户对autorun.inf的完全控制权
+cacls k:\*.ico /p everyone:f               赋予所有用户对*.ico的完全控制权
+ 
+OK，你可以去U盘删掉autorun.inf和*.ico，弹出U盘并重新插入，你会发现U盘的图标已经变回来了。
+ 
+附：把U盘转为NTFS文件格式的方法：
+ 
+NTFS文件格式有四大优点：
+1.具备错误预警的文件系统
+2.文件读取速度更高效！
+3.磁盘自我修复功能
+4.“防灾赈灾”的事件日志功能
+ 
+方法：右击可移动磁盘→属性→硬件→选择USB磁盘驱动器→属性→策略→选择“为提高性能而优化”，确定后就可以把U盘格式为NTFS文件格式了。（此法基于WinXP，其它系统请参考执行）

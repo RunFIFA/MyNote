@@ -1,0 +1,28 @@
+例1：在下午3点钟将c:\1233.txt复制到d:\。
+
+at 15:00 /interactive cmd /c copy c:\1233.txt d:\
+
+以上添加的是一次性任务，要想每天执行此任务，按照以下：
+
+at 15:00 /interactive /every:M,T,W,Th,F,S,Su cmd /c copy c:\1233.txt d:\
+
+每月的1到10号执行——at 15:00 /interactive /every:1,2,3,…10 cmd /c copy c:\1233.txt d:\
+
+下个月的15号执行——at 15:00 /interactive /next:15 cmd /c copy c:\1233.txt d:\
+
+注：1.因为copy是dos内部命令，是在命令符cmd下运行的，所以得在前面加"cmd /c"，否则不能执行任务。2.参数"/interactive"只能放在时间"15:00"后面，其它位置不行。
+
+
+例2：在早上10点钟停止打印机服务。
+
+at 10:00 /interactive cmd /c net stop spooler 或 at 10:00 /interactive net stop spooler
+
+
+例3：让"E:\kugou\生日歌.mp3"在晚上12点钟定时播放。
+
+at 0:00 /interactive "E:\kugou\生日歌.mp3"
+
+
+例4：让server_001服务器每晚12点钟将"c:\backup"里的文件备份到server_002服务器的d盘下。
+
+at \\server_001 0:00 /interactive /every:M,T,W,Th,F,S,Su cmd /c xcopy "c:\backup" "\\server_002\d$\" /e /h /c /d /y

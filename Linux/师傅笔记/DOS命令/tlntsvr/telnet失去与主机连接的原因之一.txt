@@ -1,0 +1,6 @@
+用windows2003做服务器,运行services.msc,启动telnet服务后,到同学电脑telnet登陆（用的windowsxp）,结果出现错误，提示如下： 
+Failure in initializing the telnet session. Shell process may not have been launched,Telnet Server has closed the connection.
+
+原因及解决方法：
+
+除了开启telnet服务，还要开启Secondary Logon服务，才能正常登陆的，还有因为防火墙的缘故，关闭防火墙或者放行23端口（你的telnet服务端口）即可。

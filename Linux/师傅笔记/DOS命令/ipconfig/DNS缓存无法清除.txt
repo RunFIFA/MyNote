@@ -1,0 +1,9 @@
+DNS缓存无法清除
+
+运行cmd后显示services.msc拒绝访问，ipconfig /displaydns显示函数错误。我禁用了再启用也不行。怎么办呢 我比较菜！说详细点 成功法解决后加倍感谢
+
+满意回答：
+
+1、开始-运行-CMD。在命令提示符窗口中键入：ipconfig /flushdns 手动清除DNS缓存。如果出错清除不了，那就有可能是你用了什么优化软件，关闭了系统的两项服务。
+
+2、开始-运行，输入services.msc，打开系统服务管理页面。找到DHCP Client和DNS Client这两项服务，启动它们并设为自动。

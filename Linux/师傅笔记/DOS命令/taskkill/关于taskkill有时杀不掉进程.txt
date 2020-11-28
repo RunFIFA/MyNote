@@ -1,0 +1,10 @@
+关于taskkill有时杀不掉进程。
+
+想关闭qq，qq.exe。
+
+taskkill /f /im qq.exe (No)
+
+taskkill /f /t /im qq.exe (Yes)
+
+小问题：qq.exe有其子进程txplatform.exe保驾护航，所以一定要加上/t，终止其子进程。现在不少的程序都不是单一进程了，如果出现结束不了的时候，不妨加个 /t，或者干脆用到taskkill就直接 taskkill /f /t /im，一了百了。
+

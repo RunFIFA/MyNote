@@ -1,0 +1,12 @@
+﻿安装ntpdate：yum -y install ntpdate
+
+
+校对时间：ntpdate ntp服务器
+
+如：
+# ntpdate cn.pool.ntp.org
+
+如果不成功，则将"cn.pool.ntp.org"换成ip。
+
+
+须知：重启ntp服务，时间会校正。因为安装好ntpdate后会生成一个配置文档"/etc/ntp/step-tickers"，该文档里配有ntp服务器地址，当重启服务时，系统会较对此ntp服务器的时间。

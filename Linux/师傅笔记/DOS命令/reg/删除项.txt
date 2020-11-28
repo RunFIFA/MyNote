@@ -1,0 +1,10 @@
+1.删除注册表子项——reg delete "路径\子项名称"
+
+例如：reg delete "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa"
+
+
+2.删除注册表键值项——reg delete 路径 /v 键值项名称
+
+例如：reg delete "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa" /v limitblankpassworduse
+
+注：以上两个删除项可以加多个参数"/f"，表示不经确认强行删除。

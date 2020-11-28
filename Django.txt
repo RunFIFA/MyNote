@@ -1,0 +1,15 @@
+Django:
+
+
+设置权限：set-Executionpolicy Unrestricted
+
+安装虚拟环境：pip install virtualenv
+把当前目录设置成虚拟环境：virtualenv C:\Users\37366\Desktop\django
+进入虚拟环境：.\Scripts\activate
+退出虚拟环境：deactivate
+安装pip install django -i https://pypi.tuna.tsinghua.edu.cn/simple
+查看模块：pip freeze
+生成结构：django-admin startproject mysite
+创建分目录：python manage.py startapp misterwu
+运行服务器：python manage.py runserver
+

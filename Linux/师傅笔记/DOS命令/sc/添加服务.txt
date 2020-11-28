@@ -1,0 +1,11 @@
+sc create 服务名 binpath="可执行文件的路径" start= auto,此命令是指添加一个启动类行为"自动"的服务。
+
+例:添加一个名为"qqin"的服务——
+   
+　 C:\Documents and Settings\Administrator>sc create qqian binPath= "C:\Program Files\TTPlayer\TTPlayer.exe" start= auto
+   
+按回车后出现"[SC] CreateService 成功"即表示添加服务成功,到此服务是添加成功了,但还未能开启,要使服务能正常开启还需设置一下注册表,打开注册表编辑器到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SvcHost,右侧找到多字符串值项"netsvcs",在其数值数据里添加该服务名qqin即可。
+
+
+
+注意："binPath="和"start="后有个空格，否则出错。

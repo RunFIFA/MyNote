@@ -1,0 +1,3 @@
+删除单个任务：at id号 /del /yes
+
+删除全部任务：at /del /yes

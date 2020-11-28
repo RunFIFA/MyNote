@@ -1,0 +1,42 @@
+安装ftp协议
+sudo apt install vsftpd
+
+配置文档c
+sudo vim /etc/vsftpd.conf
+
+修改以下
+ 14 listen=NO
+ 22 listen_ipv6=YES
+ 25 anonymous_enable=NO
+ 27 # Uncomment this to allow local users to log in.
+ 28 local_enable=YES
+ 48 dirmessage_enable=YES
+ 54 use_localtime=YES
+ 57 xferlog_enable=YES
+ 60 connect_from_port_20=YES
+142 secure_chroot_dir=/var/run/vsftpd/empty
+145 pam_service_name=vsftpd
+149 rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+150 rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+151 ssl_enable=NO
+
+
+创建用户
+sudo vim /etc/vsftpd.chroot_list
+luo
+
+创建文件夹
+mkdie share
+
+重启
+sudo systemctl restart vsftpd.service
+sudo /etc/init.d/vsftpd restart
+sudo service vsftpd restart
+
+查看服务是否开启
+sudo systemctl status vsftpd.service
+
+
+
+上传 put someflie
+下载 get somefile

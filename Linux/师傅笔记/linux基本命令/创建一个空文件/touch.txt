@@ -1,0 +1,3 @@
+﻿touch，创建空文件。
+
+如：touch test.txt

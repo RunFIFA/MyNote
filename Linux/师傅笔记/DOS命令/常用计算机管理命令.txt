@@ -1,0 +1,347 @@
+mstsc－－－－－－远程桌面连接 　
+logoff－－－－－－－－－注销命令
+Nslookup－－－－－－－IP地址侦测器 
+netstat －an－－－－(TC)命令检查接口
+rononce －p －－－－15秒关机
+chkdsk.exe－－－－－Chkdsk磁盘检查
+
+tsshutdn－－－－－－－60秒倒计时关机命令
+lusrmgr.msc－－－－本机用户和组
+
+winchat－－－－－－－－XP自带局域网聊天
+
+
+win+R键打开运行命令行
+sndrec32－－－－－－－录音机
+explorer－－－－－－－打开资源管理器
+
+services.msc－－－本地服务设置
+oobe/msoobe /a－－－－检查XP是否激活
+notepad－－－－－－－－打开记事本
+
+cleanmgr－－－－－－－**整理
+net start messenger－－－－开始信使服务
+compmgmt.msc－－－计算机管理
+net stop messenger－－－－－停止信使服务
+conf－－－－－－－－－－－启动 netmeeting
+dvdplay－－－－－－－－DVD播放器
+charmap－－－－－－－－启动字符映射表
+diskmgmt.msc－－－磁盘管理实用程序
+calc－－－－－－－－－－－启动计算器
+dfrg.msc－－－－－－－磁盘碎片整理程序
+devmgmt.msc－－－ 设备管理器
+drwtsn32－－－－－－ 系统医生
+dxdiag－－－－－－－－－检查DirectX信息
+regedt32－－－－－－－注册表编辑器
+Msconfig.exe－－－系统配置实用程序
+rsop.msc－－－－－－－组策略结果集
+mem.exe－－－－－－－－显示内存使用情况
+regedit.exe－－－－注册表
+progman－－－－－－－－程序管理器
+winmsd－－－－－－－－－系统信息
+perfmon.msc－－－－计算机性能监测程序
+winver－－－－－－－－－检查Windows版本
+sfc /scannow－－－－－扫描错误并复原
+taskmgr－－－－－任务管理器（2000／xp／2003）
+wmimgmt.msc－－－－打开windows管理体系结构(WMI)
+wupdmgr－－－－－－－－windows更新程序
+w脚本－－－－－－－－windows脚本宿主设置
+write－－－－－－－－－－写字板
+
+winmsd－－－－－－－－－系统信息
+wiaacmgr－－－－－－－扫描仪和照相机向导
+mem.exe－－－－－－－－显示内存使用情况
+Msconfig.exe－－－系统配置实用程序
+mplayer2－－－－－－－简易widnows media player
+mspaint－－－－－－－－画图板 
+mplayer2－－－－－－－媒体播放机
+magnify－－－－－－－－放大镜实用程序
+mmc－－－－－－－－－－－－打开控制台
+mobsync－－－－－－－－同步命令
+dxdiag－－－－－－－－－检查DirectX信息
+drwtsn32－－－－－－ 系统医生
+devmgmt.msc－－－ 设备管理器
+dfrg.msc－－－－－－－磁盘碎片整理程序
+diskmgmt.msc－－－磁盘管理实用程序
+dcomcnfg－－－－－－－打开系统组件服务
+ddeshare－－－－－－－打开DDE共享设置
+dvdplay－－－－－－－－DVD播放器
+net stop messenger－－－－－停止信使服务
+net start messenger－－－－开始信使服务
+notepad－－－－－－－－打开记事本
+nslookup－－－－－－－网络管理的工具向导
+ntbackup－－－－－－－系统备份和还原
+narrator－－－－－－－屏幕“讲述人”
+ntmsmgr.msc－－－－移动存储管理器
+ntmsoprq.msc－－－移动存储管理员操作请求 
+syncapp－－－－－－－－创建一个公文包
+sysedit－－－－－－－－系统配置编辑器
+sigverif－－－－－－－文件签名验证程序
+sndrec32－－－－－－－录音机
+shrpubw－－－－－－－－创建共享文件夹
+secpol.msc－－－－－本地安全策略
+syskey－－－－－－－－－系统加密，一旦加密就不能解开，保护windows xp系统的双重密码
+services.msc－－－本地服务设置
+Sndvol32－－－－－－－音量控制程序
+sfc.exe－－－－－－－－系统文件检查器
+sfc /scannow－－－windows文件保护
+tsshutdn－－－－－－－60秒倒计时关机命令
+tourstart－－－－－－xp简介（安装完成后出现的漫游xp程序）
+taskmgr－－－－－－－－任务管理器
+eventvwr－－－－－－－事件查看器
+eudcedit－－－－－－－造字程序
+explorer－－－－－－－打开资源管理器
+packager－－－－－－－对象包装程序
+perfmon.msc－－－－计算机性能监测程序
+progman－－－－－－－－程序管理器
+regedit.exe－－－－注册表
+rsop.msc－－－－－－－组策略结果集
+regedt32－－－－－－－注册表编辑器
+rononce －p －－－－15秒关机
+regsvr32 /u *.dll－－－－停止dll文件运行
+regsvr32 /u zipfldr.dll－－－－－－取消ZIP支持
+cmd.exe－－－－－－－－CMD命令提示符
+chkdsk.exe－－－－－Chkdsk磁盘检查
+certmgr.msc－－－－证书管理实用程序
+calc－－－－－－－－－－－启动计算器
+charmap－－－－－－－－启动字符映射表
+cliconfg－－－－－－－SQL SERVER 客户端网络实用程序
+Clipbrd－－－－－－－－剪贴板查看器
+conf－－－－－－－－－－－启动netmeeting
+compmgmt.msc－－－计算机管理
+ciadv.msc－－－－－－索引服务程序
+osk－－－－－－－－－－－－打开屏幕键盘
+odbcad32－－－－－－－ODBC数据源管理器
+oobe/msoobe /a－－－－检查XP是否激活
+lusrmgr.msc－－－－本机用户和组
+logoff－－－－－－－－－注销命令
+iexpress－－－－－－－木马捆绑工具，系统自带
+fsmgmt.msc－－－－－共享文件夹管理器
+utilman－－－－－－－－辅助工具管理器
+gpedit.msc－－－－－组策略
+1.最基本，最常用的，测试物理网络的ping 192.168.0.8 －t ，参数－t是等待用户去中断测试
+2.查看DNS、IP、Mac等
+A.Win98：winipcfg
+B.Win2000以上：Ipconfig/all
+C.NSLOOKUP：如查看河北的DNS
+C:\>nslookup
+Default Server: ns.hesjptt.net.cn
+Address: 202.99.160.68
+>server 202.99.41.2 则将DNS改为了41.2
+> pop.pcpop.com
+Server: ns.hesjptt.net.cn
+Address: 202.99.160.68
+Non-authoritative answer:
+Name: pop.pcpop.com
+Address: 202.99.160.212
+3.网络信使 （经常有人问的~）
+Net send 计算机名/IP|* (广播) 传送内容，注意不能跨网段
+net stop messenger 停止信使服务，也可以在面板－服务修改
+net start messenger 开始信使服务
+4.探测对方对方计算机名，所在的组、域及当前用户名（追捕的工作原理）
+ping －a IP －t ，只显示NetBios名
+nbtstat -a 192.168.10.146 比较全的
+5.netstat -a 显示出你的计算机当前所开放的所有端口 netstat -s -e 比较详细的显示你的网络资料，包括TCP、UDP、ICMP 和 IP的统计等
+6.探测arp绑定（动态和静态）列表，显示所有连接了我的计算机，显示对方IP和MAC地址
+arp -a
+7.在代理服务器端
+捆绑IP和MAC地址，解决局域网内盗用IP！：
+ARP －s 192.168.10.59 00 －50－ff－6c－08－75
+解除网卡的IP与MAC地址的绑定：
+arp -d 网卡IP
+8.在网络邻居上隐藏你的计算机 （让人家看不见你！）
+net config server /hidden:yes
+net config server /hidden:no 则为开启
+9.几个net命令
+A.显示当前工作组服务器列表 net view，当不带选项使用本命令时，它就会显示当前域或网络上的计算机上的列表。
+比如：查看这个IP上的共享资源，就可以
+C:\>net view 192.168.10.8
+在 192.168.10.8 的共享资源
+资源共享名 类型 用途 注释
+--------------------------------------
+网站服务 Disk
+命令成功完成。
+B.查看计算机上的用户帐号列表 net user
+C.查看网络链接 net use
+例如：net use z: \\192.168.10.8\movie 将这个IP的movie共享目录映射为本地的Z盘
+D.记录链接 net session
+例如：
+C:\>net session
+计算机 用户名 客户类型 打开空闲时间
+------------------------------------------------
+\\192.168.10.110 ROME Windows 2000 2195 0 00:03:12
+\\192.168.10.51 ROME Windows 2000 2195 0 00:00:39
+命令成功完成。
+10.路由跟踪命令
+A.tracert pop.pcpop.com
+B.pathping pop.pcpop.com 除了显示路由外，还提供325S的分析，计算丢失包的％
+11.关于共享安全的几个命令
+A.查看你机器的共享资源 net share
+B.手工删除共享（可以编个bat文件，开机自运行，把共享都删了！）
+net share c$ /d
+net share d$ /d
+net share ipc$ /d
+net share admin$ /d
+注意$后有空格。
+C.增加一个共享：
+c:\net share mymovie=e:\downloads\movie /users:1
+mymovie 共享成功。
+同时限制链接用户数为1人。
+12.在DOS行下设置静态IP
+A.设置静态IP
+CMD
+netsh
+netsh>int
+interface>ip
+interface ip>set add "本地链接" static IP地址 mask gateway
+B.查看IP设置
+interface ip>show address
+Arp
+显示和修改“地址解析协议 (ARP)”缓存中的项目。ARP 缓存中包含一个或多个表，它们用于存储 IP 地址及其经过解析的以太网或令牌环物理地址。计算机上安装的每一个以太网或令牌环网络适配器都有自己单独的表。如果在没有参数的情况下使用，则 arp 命令将显示帮助信息。
+语法
+arp [-a [InetAddr] [-N IfaceAddr]] [-g [InetAddr] [-N IfaceAddr]] [-d InetAddr [IfaceAddr]] [-s InetAddr EtherAddr [IfaceAddr]]
+参数
+-a [InetAddr] [-N IfaceAddr]
+显示所有接口的当前 ARP 缓存表。要显示指定 IP 地址的 ARP 缓存项，请使用带有 InetAddr 参数的 arp -a，此处的 InetAddr 代表指定的 IP 地址。要显示指定接口的 ARP 缓存表，请使用 -N IfaceAddr 参数，此处的 IfaceAddr 代表分配给指定接口的 IP 地址。-N 参数区分大小写。
+-g [InetAddr] [-N IfaceAddr]
+与 -a 相同。
+-d InetAddr [IfaceAddr]
+删除指定的 IP 地址项，此处的 InetAddr 代表 IP 地址。对于指定的接口，要删除表中的某项，请使用 IfaceAddr参数，此处的 IfaceAddr 代表分配给该接口的 IP 地址。要删除所有项，请使用星号 (*) 通配符代替 InetAddr。
+-s InetAddr EtherAddr [IfaceAddr]
+向 ARP 缓存添加可将 IP 地址 InetAddr 解析成物理地址 EtherAddr 的静态项。要向指定接口的表添加静态 ARP 缓存项，请使用 IfaceAddr 参数，此处的 IfaceAddr 代表分配给该接口的 IP 地址。
+/?
+在命令提示符显示帮助。
+注释
+InetAddr 和 IfaceAddr 的 IP 地址用带圆点的十进制记数法表示。
+物理地址 EtherAddr 由六个字节组成，这些字节用十六进制记数法表示并且用连字符隔开（比如，00-AA-00-4F-2A-9C）。
+通过 -s 参数添加的项属于静态项，它们不会 ARP 缓存中超时。如果终止 TCP/IP 协议后再启动，这些项会被删除。要创建永久的静态 ARP 缓存项，请在批处理文件中使用适当的 arp 命令并通过“计划任务程序”在启动时运行该批处理文件。
+只有当网际协议 (TCP/IP) 协议在网络连接中安装为网络适配器属性的组件时，该命令才可用。
+范例
+要显示所有接口的 ARP 缓存表，可键入：
+arp -a
+对于指派的 IP 地址为 10.0.0.99 的接口，要显示其 ARP 缓存表，可键入：
+arp -a -N 10.0.0.99
+要添加将 IP 地址 10.0.0.80 解析成物理地址 00-AA-00-4F-2A-9C 的静态 ARP 缓存项，可键入：
+arp -s 10.0.0.80 00-AA-00-4F-2A-9C
+At
+计划在指定时间和日期在计算机上运行命令和程序。at 命令只能在“计划”服务运行时使用。如果在没有参数的情况下使用，则 at 列出已计划的命令。
+语法
+at [\\ComputerName] [{[ID] [/delete]|/delete [/yes]}]
+at [[\\ComputerName] hours:minutes [/interactive] [{/every:date[,...]|/next:date[,...]}] command]
+参数
+\\computername
+指定远程计算机。如果省略该参数，则 at 计划本地计算机上的命令和程序。
+ID
+指定指派给已计划命令的识别码。
+/delete
+取消已计划的命令。如果省略了 ID，则计算机中所有已计划的命令将被取消。
+/yes
+删除已计划的事件时，对来自系统的所有询问都回答“是”。
+hours:minutes
+指定命令运行的时间。该时间用 24 小时制（即从 00:00 [午夜] 到 23:59）的 小时: 分钟格式表示。
+/interactive
+对于在运行 command 时登录的用户,允许 command 与该用户的桌面进行交互。
+/every:
+在每个星期或月的指定日期（例如，每个星期四，或每月的第三天）运行 command 命令。
+date
+指定运行命令的日期。可以指定一周的某日或多日（即，键入 M、T、W、Th、F、S、Su）或一个月中的某日或多日（即，键入从 1 到31 之间的数字）。用逗号分隔多个日期项。如果省略了 date，则 at 使用该月的当前日。
+/next:
+在下一个指定日期（比如，下一个星期四）到来时运行 command。
+command
+指定要运行的 Windows 命令、程序（.exe 或 .com 文件）或批处理程序（.bat 或 .cmd 文件）。当命令需要路径作为参数时，请使用绝对路径，也就是从驱动器号开始的整个路径。如果命令在远程计算机上，请指定服务器和共享名的通用命名协定 (UNC) 符号，而不是远程驱动器号。
+/?
+在命令提示符显示帮助。
+注释
+Schtasks 是功能更为强大的超集命令行计划工具，它含有 at 命令行工具中的所有功能。对于所有的命令行计划任务，都可以使用 schtasks 来替代 at。有关 schtasks 的详细信息，请参阅“相关主题”。
+使用 at
+使用 at 命令时，要求您必须是本地 Administrators 组的成员。
+加载 Cmd.exe
+在运行命令之前，At 不会自动加载 Cmd.exe （命令解释器）。如果没有运行可执行文件 (.exe)，则在命令开头必须使用如下所示的方法专门加载 Cmd.exe：
+cmd /c dir > c:\test.out。
+查看已计划的命令
+当不带命令行选项使用 at 时，计划任务会出现在类似于以下格式的表中：
+Status ID Day Time Command Line
+OK 1 Each F 4:30 PM net send group leads status due
+OK 2 Each M 12:00 AM chkstor > check.file
+OK 3 Each F 11:59 PM backup2.bat
+包含标识号 (ID)
+当在命令提示下使用带有标识号 (ID) 的 at 命令时，单个任务项的信息会显示在类似于下面的格式中：
+Task ID： 1
+Status:OK
+Schedule:Each F
+Time of Day:4:30 PM
+Command:net send group leads status due当计划带有 at 的命令（尤其是带有命令行选项的命令）后，要通过键入不带命令行选项的 at 来检查该命令语法是否输入正确。如果显示在“命令行”列中的信息不正确，请删除该命令，然后重新键入它。如果还不正确，则可以在重新键入该命令时让它少带些命令行选项。
+查看结果
+使用 at 的已经计划的命令作为后台程序运行。运行结果不会显示在计算机上。要将输出重定向到文件，请使用重定向符号 (> )。如果将输出重定向到文件，则不论是在命令行还是在批处理文件中使用 at，都需要在重定向符号之前使用转义符 (^)。例如，要重定向输出到 Output.text 文件，则要键入：
+at 14:45 c:\test.bat ^>c:\output.txt
+执行命令的当前目录为 systemroot 文件夹。
+更改系统时间
+在使用 at 命令计划了要运行的命令之后，如果更改了计算机的系统时间，则通过键入不带命令行选项的 at 可使 at 计划程序与修改后的系统时间同步。
+存储命令
+已计划的命令存储在注册表中。这样，如果重新启动“计划”服务，则不会丢失计划任务。
+连接到网络驱动器
+对于需要访问网络的计划作业，请不要使用已重新定向的驱动器。“计划”服务可能无法访问这些重定向的驱动器，或者，在该计划任务运行时如果有其他用户登录，则这些重定向的驱动器可能不会出现。因此，对于计划作业，请使用 UNC 路径。例如：
+at 1:00pm my_backup \\server\share
+请不要使用下述语法（其中 x: ?表示由用户建立的连接）：
+at 1:00pm my_backup x:
+如果计划了一个使用驱动器号的 at 命令来连接共享目录，则应包含一个 at 命令以使在完成该驱动器的使用时断开与驱动器的连接。如果不能断开与驱动器的连接，则在命令提示下，所指派的驱动器号将不可用。
+范例
+要显示 Marketing 服务器上已计划的命令列表，请键入：
+at \\marketing
+要了解服务器 Corp 上标识号为 3 的命令的详细信息，请键入：
+at \\corp 3
+要计划在上午 8:00 于 Corp 服务器上运行网络共享命令，并将该列表重定向到 Maintenance 服务器的 Corp.txt 文件（位于 Reports 共享目录下）中，请键入：
+at \\corp 08:00 cmd /c "net share reports=d:\marketing\reports >> \\maintenance\reports\corp.txt"
+为了在每五天后的午夜将 Marketing 服务器的硬盘驱动器备份到磁带驱动器，首先创建名为 Archive.cmd 的批处理程序（它含有备份命令），然后计划该批处理程序的运行，为此请键入：
+at \\marketing 00:00 /every:5,10,15,20,25,30 archive
+要取消当前服务器上已计划的所有命令，请按下述方法清除 at 计划信息：
+at /delete
+如果要运行的命令不是可执行 (.exe) 文件，请按如下所示的方法在该命令之前使用 cmd /c 来加载 Cmd.exe：
+cmd /c dir > c:\test.out。
+Rsh
+在运行 RSH 服务的远程计算机上运行命令。Windows XP 和 Windows 2000 不提供 RSH 服务。Windows 2000 Server Resource Kit 提供名为 Rshsvc.exe 的 RSH 服务。使用不带参数的 rsh 显示帮助。
+语法
+rsh [Host] [-l UserName] [-n] [Command]
+参数
+Host
+指定运行 command 的远程计算机。
+-l UserName
+指定远程计算机上使用的用户名。在省略情况下，使用当前登录用户的名称。
+-n
+将 rsh 的输入重定向到 NULL 设备。这防止本地计算机命令结果的显示。
+Command
+指定要运行的命令。
+/?
+在命令提示符显示帮助。
+注
+Nslookup－－－－－－－IP地址侦测器
+explorer－－－－－－－打开资源管理器
+logoff－－－－－－－－－注销命令
+tsshutdn－－－－－－－60秒倒计时关机命令
+lusrmgr.msc－－－－本机用户和组
+services.msc－－－本地服务设置
+oobe/msoobe /a－－－－检查XP是否激活
+notepad－－－－－－－－打开记事本
+cleanmgr－－－－－－－**整理
+net start messenger－－－－开始信使服务
+net stop messenger－－－－－停止信使服务
+conf－－－－－－－－－－－启动 netmeeting
+dvdplay－－－－－－－－DVD播放器
+charmap－－－－－－－－启动字符映射表
+calc－－－－－－－－－－－启动计算器
+dfrg.msc－－－－－－－磁盘碎片整理程序
+chkdsk.exe－－－－－Chkdsk磁盘检查
+devmgmt.msc－－－ 设备管理器
+drwtsn32－－－－－－ 系统医生
+rononce －p －－－－15秒关机
+rsop.msc－－－－－－－组策略结果集
+mem.exe－－－－－－－－显示内存使用情况
+winmsd－－－－－－－－－系统信息
+winver－－－－－－－－－检查Windows版本
+sfc /scannow－－－－－扫描错误并复原
+wupdmgr－－－－－－－－windows更新程序
+winmsd－－－－－－－－－系统信息
+winchat－－－－－－－－XP自带局域网聊天
+mstsc－－－－－－－－－－远程桌面连接
+
+  

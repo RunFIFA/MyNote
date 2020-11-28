@@ -1,0 +1,3 @@
+"net localgroup 用户组名称"——查看本地用户组成员。
+
+例如：查看用户组administrators下都有哪些成员——"net localgroup administrators"

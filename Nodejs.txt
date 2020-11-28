@@ -1,0 +1,17 @@
+nodejs>
+
+cnpm：npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+Express框架：
+
+npm install express-generator -g
+express test
+
+React:
+npx create-react-app myApp
+npm start
+
+pm2使用：
+pm2 start app.js
+pm2 list
+pm2 monit

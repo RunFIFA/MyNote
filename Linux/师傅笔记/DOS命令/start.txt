@@ -1,0 +1,41 @@
+启动一个单独的窗口运行指定的程序或命令。作用等同双击鼠标左键。
+
+例1：打开路径——打开C盘
+
+start c:
+
+例2：打开程序——打开c:\windows\teamviewer.exe
+
+start c:\windows\teamviewer.exe
+
+注意：1.start打开的路径或程序名不能有空格，有空格的路径或程序名不能用start打开；2.路径或程序名不能用双引号包起来。
+
+例3：打开有空格路径的程序——打开c:\program files\teamviewer.exe
+
+cd c:\program files
+start teamviewer.exe
+
+先切换到"program files"下，再执行"start teamviewer.exe"
+
+不当的操作及正确方法：
+
+1.start "c:\windows\system32"
+
+错误原因：路径用了双引号包住
+
+正确操作：start c:\windows\system32 
+
+2.start "C:\Program Files\KuGou\KGMusic\KuGou.exe"
+
+错误原因：路径有空格及双引号
+
+正确操作：
+
+cd "C:\Program Files\KuGou\KGMusic"
+start KuGou.exe
+
+3.start "c:\program files\team viewer.exe"
+
+错误原因：路径及程序名都有空格、双引号。要打开路径及程序名都有空格的程序，用start是做不到的。
+
+正确操作：在命令符下直接输入"c:\program files\team viewer.exe"

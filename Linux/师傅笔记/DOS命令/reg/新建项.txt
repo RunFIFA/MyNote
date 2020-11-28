@@ -1,0 +1,20 @@
+1.想在HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa\下建立一个名为和test的子项应该怎样写?
+
+答：reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa\test" 
+
+
+2.想更改HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa\下的dword值键值项limitblankpassworduse的十六进制值为0，怎么做？
+
+答：reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa" /v limitblankpassworduse /t reg_dword /d 0x0 [也可以是：00000000(此数值表示十进制值)]
+
+
+
+说明：reg add——是新建、编辑子项和键项的dos命令。新建、编辑键项的语法：reg add "路径" /v 键值名称 /t 键值类型(如reg_dword) /d 键值
+
+REG_SZ——字符串值
+REG_BINARY——二进制值
+REG_DWORD——DWORD值
+REG_MULTI_SZ——多字符串值
+REG_EXPAND_SZ——可扩充字符串值
+
+

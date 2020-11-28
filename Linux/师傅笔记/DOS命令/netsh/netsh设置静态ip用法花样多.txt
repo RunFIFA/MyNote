@@ -1,0 +1,26 @@
+在用netsh设置静态ip时花样特多,现我就简单讲几种.
+
+方法1：一步一步输:cmd→netsh,回车,出现"netsh>",输"in ip"或"int ip"又或者"interface ip"都可以,后面出现的都一样是"netsh interface ip>",后面就是开始设置ip的命令参数了,设置ip呢,大致步骤都是分两段,就是设置ip、子网、网关为一个步骤，设置dns另为一步骤。
+
+例：设一个“本地连接”为静止ip192.168.1.100、子网255.255.255.0、网关192.168.1.1、dns202.103.224.68。
+
+花样1: ①set address "本地连接" static 192.168.1.100 255.255.255.0 192.168.1.1 1
+　　　 ②set dns "本地连接" static 192.168.1.1
+
+花样2: ①set address name="本地连接" source=static addr=192.168.1.100 mask=255.255.255.0 gateway=192.168.1.1 1
+       ②set dns name="本地连接" source=static addr=202.103.224.68 
+
+花样3: ①set address name="本地连接" source=static addr=192.168.1.100 mask=255.255.255.0 gateway=192.168.1.1 gwmetric=1
+       ②与花样2的相同
+
+花样4：①set address name="本地连接" source=static addr=192.168.1.100 mask=255.255.255.0 
+       ②set address name="本地连接" gateway=192.168.1.1 gwmetric=1
+       ③与花样2的相同
+
+方法2：一步到位:后面设置ip的命令参数与方法1的一样，只是前面这一段输入方式不同。
+
+输入方式1：cmd→netsh interface ip+设置ip命令
+
+输入方式2：cmd→netsh in ip+设置ip命令
+
+输入方式3：cmd→netsh int ip+设置ip命令

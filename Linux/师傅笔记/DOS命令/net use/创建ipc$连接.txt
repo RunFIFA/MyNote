@@ -1,0 +1,3 @@
+net use \\对方主机名或ip\ipc$ "密码(后面用户的密码)" /user:\对方主机名\用户.
+
+例:net use \\ws005-008\ipc$ "123456" /user:ws005-008\administrator

@@ -1,0 +1,12 @@
+关于at命令有时候错误
+
+想定时启动一首歌曲
+
+at 3:35 f:\music\老男孩.mp3 (NO)
+
+at 3:35 /interactive f:\music\老男孩.mp3 (Yes)
+
+小问题：at命令是很犀利的，但是没有“交互”（interactive）总是有点欠缺，就像是人不交流就没有进步一样。
+详情请见：http://tieba.baidu.com/f?kz=936528460
+
+

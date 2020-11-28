@@ -1,0 +1,3 @@
+Nslookup(name server lookup)( 域名查询):是一个用于查询 Internet 域名信息或诊断DNS 服务器问题的工具.
+
+语法：nslookup 域名

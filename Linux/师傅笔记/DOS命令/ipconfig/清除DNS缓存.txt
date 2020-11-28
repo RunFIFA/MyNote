@@ -1,0 +1,2 @@
+如果是2000或XP以上系统,在开始-运行中输入 cmd,回车后弹出命令窗口,接着输入以下命令:ipconfig /flushdns ,回车运行完后,DNS缓存就被清除了. 
+你可以使用ipconfig /displaydns查看DNS缓存

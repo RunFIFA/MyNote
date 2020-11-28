@@ -1,0 +1,3 @@
+﻿语法：rpm -e rpm的已安装信息 ，例：rpm -e rdesktop-1.7.1-1.el6.i686
+
+rpm的已安装信息可以用"rpm -q 软件名称" 或 "rpm -qa|grep 软件名称"，如：rpm -q rdesktop

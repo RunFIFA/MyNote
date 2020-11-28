@@ -1,0 +1,37 @@
+﻿修改权限
+
+方式一：
+
+命令"chmod"用以修改文件的权限
+语法：chmod 模式 文件
+
+模式为如下格式：
+u、g、o分别代表用户、组和其他。
+a可以代指ugo.
++、-代表加入或删除对应权限。
+r、w、x代表三种权限。
+
+模式示例：
+chmod u+rw linuxcast.net  #为"linuxcast.net"的所属用户加入"rw"权限
+chmod g-x linuxcast.net  #为"linuxcast.net"的所属组删掉"x"权限
+"chmod go+r linuxcast.net" = "chmod g+r,o+r linuxcast.net"  #为"linuxcast.net"的所属组和其它加入"r"权限
+chmod g+w,o+x linuxcast.net  #为"linuxcast.net"的所属组加入"w"权限；为其它加入"x"权限
+chmod a-x linuxcast.net  #为"linuxcast.net"的所有（ugo）减去"x"权限
+
+
+
+方式二：
+
+命令"chmod"也支持以数字方式修改权限，三个权限分别由三个数字表示：
+r=4(2^2----2的2次方)
+w=2(2^1----2的1次方)
+x=1(2^0----2的0次方)
+
+使用数字表示权限时，每组权限分别为对应数字之和：
+rw=4+2=6
+rwx=4+2+1=7
+r-x=4+1=5
+
+所以，使用数字表示ugo权限使用如下方式表示：
+chmod 660 linuxcast.net =rw-rw----
+chmod 775 linuxcast.net =rwxrwxr-x

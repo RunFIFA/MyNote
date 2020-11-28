@@ -1,0 +1,10 @@
+D:\Documents and Settings\jinnianhuang>net send ws005-001 给你装个64位的win7
+发送消息到 WS005-001 的时候出错。
+
+发生一般网络错误。
+
+请键入 NET HELPMSG 2136 以获得更多的帮助。
+
+——发送消息时出现"发生一般网络错误"表示目标电脑有开机，但messenger服务没有启动或没有响应。
+
+解决办法：启动或重启目标电脑messenger服务。

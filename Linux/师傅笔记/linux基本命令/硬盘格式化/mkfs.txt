@@ -1,0 +1,10 @@
+﻿命令mkfs也可用于创建文件系统，相较于mke2fs简单，但是支持的参数较少，不能进行精细
+化的控制。
+
+例如：
+
+1. mkfs.ext3 /dev/sda3 ----给磁盘分区/dev/sda3创建ext3的文件系统。
+
+2. mkfs.ext4 /dev/sda4 ----给磁盘分区/dev/sda3创建ext4的文件系统。
+
+3. mkfs.vfat /dev/sda4 ----给磁盘分区/dev/sda3创建vfat的文件系统。

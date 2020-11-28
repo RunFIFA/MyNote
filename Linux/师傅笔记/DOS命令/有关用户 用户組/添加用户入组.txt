@@ -1,0 +1,3 @@
+添加用户入组："net localgroup 组名 用户名 /add"
+
+例如：将用户test加入管理员组——"net localgroup administrators test /add"

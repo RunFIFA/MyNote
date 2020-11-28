@@ -1,0 +1,16 @@
+1.查询子项或键值项。
+
+  语法：reg query "path"
+
+  例1：查看"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion"下都有些什么,语法：reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion"或：reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion" 
+
+
+
+2.查询键值项的值。
+
+  语法：reg query "path" /v 键值项名称
+
+  例2：查看"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\run"下字符串值项"ctfmon.exe"的键值，语法：reg query "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\run" /v ctfmon.exe,在"REG_SZ"后面显示的就是键值。
+
+
+注：在查询子项的语法里，若是此项下有键值项的，该键值项的值已经显示出来，不再需要用到参数"/v"，像上面的例2，执行：reg query "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\run" ,已经可以看得到键值项"ctfmon.exe"的值了。又如：reg query "HKLM\SYSTEM\CurrentControlSet\Services\Dhcp" 。

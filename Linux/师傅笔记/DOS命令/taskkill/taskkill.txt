@@ -1,0 +1,21 @@
+关闭程序(结束进程)：taskkill /f /im 进程名,或者是taskkill /f /im PID
+
+例1：终止本地计算机QQ程式。
+
+taskkill /f /im QQ.exe 
+或 taskkill /f /pid 2168(QQ.exe的pid号)
+
+参数: /f ——表示指定要强行终止进程。
+      /pid后随进程的pid号。
+
+
+
+
+例2：终止远程计算机QQ程式。
+
+taskkill /s 192.168.1.100 /im qq.exe /u:ws005-071\administrator,回车后输入用户密码确定，便可终止qq.exe。
+或 taskkill /s 192.168.1.100 /im qq.exe /u:ws005-071\administrator /p 用户密码
+
+参数：/s system ——指定要连接到的远程系统。
+      /u domain\user ——指定应该在哪个用户上下文执行这个命令。
+      /p password ——为提供的用户上下文指定密码。如果忽略，提示输入。

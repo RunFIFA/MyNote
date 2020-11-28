@@ -1,0 +1,18 @@
+区域网内使用samba
+
+创建文件夹
+mkdir share
+配置文件
+sudo vim /etc/samba/smb.conf
+尾行加入
+[share]
+        path = home/luo/share
+        available = yes
+        browseable = yes
+        writable = yes
+创建用户
+sudo touch /etc/samba/smbapasswd
+设置密码
+smbpasswd -a luo
+重启
+/etc/init.d/smbd restart

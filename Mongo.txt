@@ -1,0 +1,165 @@
+mongo：
+
+mongodb启动：
+mongod --config /usr/local/mongo/mongodb.conf
+
+MongoDB
+下载： wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.6.3.tgz
+解压： tar -zxvf mongodb-linux-x86_64-3.6.3.tgz
+安装到相应目录：移动到/usr/local/mongodb
+增加文件夹：mkdir /usr/mongodb/data
+添加一个配置文件：vim /usr/local/mongodb/bin/mongodb.conf
+　　dbpath=/usr/local/mongodb/data/
+　　logpath=/usr/local/mongodb/data/log/mongodb.log
+　　logappend=true
+　　port=27017
+　　fork=true
+　　auth=true
+配置path路径   vim /etc/profile
+　　export PATH=$PATH:/usr/mongodb/mongodb/bin
+		source /etc/profile
+启动mongodb：mongod --config /usr/local/mongodb/bin/mongodb.conf
+查看进程：ps -ef | grep mongodb
+停止服务 mongo > use admin > db.shutdownServer()
+
+
+
+show dbs
+use user
+db.user.insert({"name":"xiaoming"})
+show collections
+db.user.drop()
+db.dropDatabase()
+db.user.find()
+db.user.find().count();
+db.user.find({"age":22})
+db.user.find({age: {$gte: 23, $lte: 26}});
+db.user.find({name: /^mongo/});  //^k开头 %结尾
+db.user.find({}, {name: 1, age: 1});
+db.user.find().sort({age: 1});
+db.user.find().skip(5).limit(10);
+db.user.find({$or: [{age: 22}, {age: 25}]});
+db.user.findOne();
+db.student.update({"sex":"男"},{$set:{"age":33}},{multi: true});
+db.users.remove({age: 132}, { justOne: true });
+
+创建大量数据
+for(var i=0; i<60000 ; i++){ db.user.insert({name:"zhang"+i, num:133458+i})}
+
+下面是创建索引的命令：
+db.user.ensureIndex({"userame":1})
+
+获取当前集合的索引：
+db.user.getIndexes()
+
+删除索引：
+db.user.dropIndex({"username":1})
+
+唯一索引:
+db.user.ensureIndex({"userid":1},{"unique":true})
+
+查询具体的执行时间:
+db.tablename.find().explain( "executionStats" )
+
+
+创建超级管理用户:
+use admin
+
+db.createUser({
+user:'admin',
+pwd:'123456',
+roles:[{role:'root',db:'admin'}]
+})
+
+配置：
+路径：C:\Program Files\MongoDB\Server\4.0\bin\mongod.cfg
+
+security:
+authorization: enabled
+
+管理员账户连接数据库：
+mongo admin -u 用户名 -p 密码
+mongo 192.168.1.200:27017/test -u user -p password
+
+
+普通用户：
+use user
+db.createUser({
+user: "useradmin",
+pwd: "123456",
+roles: [ { role: "dbOwner", db: "user" } ]
+})
+
+
+Mongodb  账户权限配置
+1、show users; #查看当前库下的用户
+2、db.dropUser("eggadmin") #删除用户
+3、db.updateUser( "admin",{pwd:"password"}); #修改用户密码
+4、db.auth("admin","password"); #密码认证
+
+
+MongoDB  聚合管道 Aggregation
+
+$project 增加、删除、重命名字段
+$match
+条件匹配。只满足条件的文档才能进入下
+一阶段
+$limit 限制结果的数量
+$skip 跳过文档的数量
+$sort 条件排序。
+$group 条件组合结果 统计
+$lookup
+$lookup 操作符 用以引入其它集合的数
+据 （表关联查询）
+
+$addToSet 将文档指定字段的值去重
+$max 文档指定字段的最大值
+$min 文档指定字段的最小值
+$sum 文档指定字段求和
+$avg 文档指定字段求平均
+$gt 大于给定值
+$lt 小于给定值
+$eq 等于给定值
+
+db.order.aggregate([
+{
+	$project:{ trade_no:1, all_price:1 }
+},
+{
+	$match:{"all_price":{$gte:90}}
+},
+{
+	$sort:{"all_price":-1}
+},
+{
+	$skip:1
+}
+])
+
+ $lookup  表关联:
+
+db.order.aggregate([
+{
+	$lookup:
+		{
+			from: "order_item",
+			localField: "order_id",
+			foreignField: "order_id",
+			as: "items"
+		}
+	}
+])
+
+
+备份还原
+
+备份：
+mongodump -h dbhost -d dbname -o dbdirectory
+(mongodump -h 127.0.0.1 -d counts -o D:\backup )
+用户备份：mongodump -h 127.0.0.1:27017 -d user -o D:\ -u useradmin -p 123456
+
+还原：
+mongorestore -h dbhost -d dbname dbdirectory
+(mongorestore -h 127.0.0.1 -d -c  --dir D:\backup )
+用户还原：mongorestore -h 127.0.0.1:27017 -d user -c user --dir D:\user\user.bson -u useradmin -p 123456
+

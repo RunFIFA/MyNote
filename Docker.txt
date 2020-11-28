@@ -1,0 +1,79 @@
+Docker：
+
+https://hub.daocloud.io/
+daocloud.io/library/...
+
+docker pull ...
+docker image ls
+docker contianer ls
+docker rmi ID
+docker save -o /usr ID
+docker load -i ..
+docker tag ID tomcat:8.5
+
+
+
+lychee-docker：
+安装docker：yum install docker
+启动docker：systemctl start docker
+可以设置一下开机启动：systemctl enable docker
+拉取lychee镜像：docker image pull kdelfour/lychee-docker
+启动lychee镜像：docker run -it -d -p 5120:80 kdelfour/lychee-docker 
+启动：docker run -it -d -p 5120:80 kdelfour/lychee-docker
+先停止运行的容器：docker container stop [container-id]
+然后删除容器：docker container rm [container-id]
+最后删除镜像：docker image rmi [image-id]
+管理员账号密码：lychee
+
+
+
+docker-compose：
+version: '3.1'
+services:
+  mysql:           # 服务的名称
+    restart: always   # 代表只要docker启动，那么这个容器就跟着一起启动
+    image: daocloud.io/library/mysql:5.7.4  # 指定镜像路径
+    container_name: mysql  # 指定容器名称
+    ports:
+      -3306:3306   #  指定端口号的映射
+    environment:
+      MYSQL_ROOT_PASSWORD: root   # 指定MySQL的ROOT用户登录密码
+      TZ: Asia/Shanghai        # 指定时区
+    volumes:
+     -/opt/docker_mysql_tomcat/mysql_data:/var/lib/mysql   # 映射数据卷
+  tomcat:
+    restart: always
+    image: daocloud.io/library/tomcat:8.5.15-jre8
+    container_name: tomcat
+    ports:
+      -8080:8080
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      -/opt/docker_mysql_tomcat/tomcat_webapps:/usr/local/tomcat/webapps
+      -/opt/docker_mysql_tomcat/tomcat_logs:/usr/local/tomcat/logs
+
+
+
+Dockerfile：
+from daocloud.io/library/tomcat:8.5.15-jre8
+copy ssm.war /usr/local/tomcat/webapps
+
+docker-compose：
+version: '3.1'
+services:
+  ssm:
+    restart: always
+    build:            # 构建自定义镜像
+      context: ../      # 指定dockerfile文件的所在路径
+      dockerfile: Dockerfile   # 指定Dockerfile文件名称
+    image: ssm:1.0.1
+    container_name: ssm
+    ports:
+      \- 8081:8080
+    environment:
+      TZ: Asia/Shanghai
+
+docker-compose up -d
+docker-compose build
+docker-compose up -d --build

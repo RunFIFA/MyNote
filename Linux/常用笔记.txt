@@ -1,0 +1,67 @@
+
+linux 更新
+ yum -y update		// apt -y update
+ yum -y upgrade		// apt -y updgrade
+
+
+
+centos 更新插件
+  yum -y install gcc
+  yum -y install kernel
+  yum -y install kernel-devel
+  yum -y install kernel-headers
+
+
+
+删除访客模式
+
+16.0.0后
+ sudo vim /usr/share/lightdm/lightdm.conf.d/50-guest-wrapper.conf
+ 输入allow-guest=false
+
+16.0.0前
+ vim /etc/lightdm/lightdm.conf文件
+ 输入allow-guest=false
+     
+ lightdm sudo restart lightdm
+
+
+
+
+安装bundle
+  切换到bundle目录下
+  chmod +x 文件名（加后缀）  //   chmod 755 文件名（加后缀）
+  ./ 文件名（加后缀）
+
+
+
+解压xx.tar.gz：tar zxvf xx.tar.gz
+
+
+ 查看进程 netstat -no
+ 查看能否连接 ping telnet
+ 查询指定软件包是否已经安装 rpm -q 软件包名
+ 查看硬盘使用情况 df -h
+ 查看进程 ps -e ( ps -aux )
+
+
+
+
+任务管理
+ 任务后台	    任务后加&
+ 暂停 		    Ctrl + z
+ 查看正在进行的任务  jobs
+ 开始任务	    bg
+ 使任务前台 	    fg
+
+卸载软件 apt remove --purge
+
+
+dpkg -i  ~/mozybackup_i386.deb 安装
+dpkg -L package 查看包是否安装
+
+
+
+VMware 12密钥 5A02H-AU243-TZJ49-GTC7K-3C61N
+pycharm server选项里边输入 http://idea.imsxm.com/
+

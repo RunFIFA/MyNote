@@ -1,0 +1,35 @@
+redis：
+
+version: '3.1'
+services:
+  redis: 
+    image: daocloud.io/library/redis
+    restart: always
+    container_name: redis
+    environment: 
+      TZ: Asia/Shanghai
+    ports: - 6379:6379
+
+
+
+key-string：值，一对一个值
+:set mset setex setnx incr incrby append strlen
+
+key-hash：Map，一对一个对象
+:hset hmset hincrby hsetnx hexits hdel hlen hvals hkeys hgetall
+
+key-list：列表，一对一个列表（有序，可重复）
+lpush lpushx lset lpop lrange rpoplpush llen lrem lindex
+
+key-set：集合，一对一个集合（无序，不可重复）
+sadd spop srem smove smembers sismember srandmember scard
+
+key-zset：有序集合，一对一个有序集合
+zadd zscore zincrby zcard zcount zrange
+
+查看所有数据
+keys exit expire expireat ttl persist
+
+redis-cli>
+
+

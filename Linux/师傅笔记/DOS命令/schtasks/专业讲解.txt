@@ -1,0 +1,1321 @@
+Schtasks
+更新时间: 2007年5月
+
+应用到: Windows Server 2003, Windows Server 2003 R2, Windows Server 2003 with SP1, Windows Server 2003 with SP2
+
+Schtasks
+安排命令和程序，使其定期运行或在指定时间运行。向计划中添加任务和从中删除任务、根据需要启动和停止任务以及显示和更改计划的任务。
+
+要查看该命令语法，请单击以下命令：
+
+schtasks create 
+
+
+schtasks change 
+
+
+schtasks run 
+
+
+schtasks end 
+
+
+schtasks delete 
+
+
+schtasks query 
+
+
+schtasks create
+计划任务。
+
+Schtasks 针对各种计划类型使用不同参数组合。要查看创建任务的组合语法或查看使用特定计划类型创建任务的语法，请单击以下选项之一。
+
+组合语法和参数描述 
+
+
+计划任务每 N 分钟运行一次 
+
+
+计划任务每 N 小时运行一次 
+
+
+计划任务每 N 天运行一次 
+
+
+计划任务每 N 周运行一次 
+
+
+计划任务每 N 月运行一次 
+
+
+计划任务在周的指定天运行 
+
+
+计划任务在月份的指定周运行 
+
+
+计划任务在每月的特定日期运行 
+
+
+计划任务在月份的最后一天运行 
+
+
+计划任务运行一次 
+
+
+计划任务在每次系统启动时运行 
+
+
+计划任务在用户登录时运行 
+
+
+计划任务在系统空闲时运行 
+
+
+计划任务现在运行 
+
+
+计划任务以不同权限运行 
+
+
+计划任务以系统权限运行 
+
+
+计划任务运行多个程序 
+
+
+计划任务在远程计算机上运行 
+
+
+组合语法和参数描述
+语法
+Schtasks /create /sc ScheduleType /tn TaskName /tr TaskRun [/s Computer [/u [Domain\]User [/p Password]]] [/ru {[Domain\]User | System}] [/rp Password] [/mo Modifier] [/d Day[,Day...]| *] [/m Month[,Month...]][/i IdleTime] [/st StartTime] [/ri Interval] [{/et EndTime | /du Duration} [/k]] [/sd StartDate] [/ed EndDate] [/it] [/Z] [/F]
+
+参数
+/sc ScheduleType 
+指定计划类型。有效值为 MINUTE、HOURLY、DAILY、WEEKLY、MONTHLY、ONCE、ONSTART、ONLOGON、ONIDLE。 
+
+ 
+计划类型  描述  
+MINUTE、HOURLY、DAILY、WEEKLY、MONTHLY
+ 指定计划的时间单位。
+ 
+ONCE
+ 任务在指定的日期和时间运行一次。
+ 
+ONSTART
+ 任务在每次系统启动时运行。可以指定启动的日期，或下一次系统启动时运行任务。
+ 
+ONLOGON
+ 每当用户（任意用户）登录时，任务就运行。可以指定日期，或在下次用户登录时运行任务。
+ 
+ONIDLE
+ 只要系统空闲指定的时期，任务就运行。可以指定日期，或在下次系统空闲时运行任务。
+ 
+
+/tn TaskName 
+指定任务的名称。系统上的每项任务都必须具有一个唯一的名称。名称必须符合文件名称规则，并且长度不得超过 238 个字符。使用引号括起包含空格的名称。
+
+/tr TaskRun 
+指定任务运行的程序或命令。键入可执行文件、脚本文件或批处理文件的完全合格的路径和文件名。路径名称的长度不得超过 262 个字符。如果忽略该路径，SchTasks 将假定文件在 Systemroot\System32 目录下。
+
+/s Computer 
+在指定的远程计算机上计划任务。键入远程计算机的名称或 IP 地址（带有或不带有反斜杠）。默认值是本地计算机。只有使用 /s 时，/u 和 /p 参数才有效。
+
+/u [Domain\]User 
+使用指定用户帐户的权限运行该命令。默认值为本地计算机上当前用户的权限。只有在远程计算机 (/s) 上计划任务时，/u 和 /p 参数才有效。 
+
+指定帐户的权限用来计划任务和运行任务。要使用其他用户的权限运行任务，请使用 /ru 参数。
+
+用户帐户必须是远程计算机上 Administrators 组的成员。另外，本地计算机必须与远程计算机处于同一个域中，或者必须处于远程计算机域信任的域中。
+
+/p Password 
+提供在 /u 参数中指定的用户帐户的密码。如果使用 /u 参数，但忽略 /p 参数或密码参数，Schtasks 将提示您输入密码，并且不显示键入的文本。 
+
+只有在远程计算机 (/s) 上计划任务时，/u 和 /p 参数才有效。
+
+/ru {[Domain\]User | System} 
+使用指定用户帐户的权限运行任务。默认情况下，使用本地计算机当前用户的权限，或者使用 /u 参数指定用户的权限（如果包含的话）运行任务。在本地或远程计算机上计划任务时，/ru 参数才有效。 
+
+ 
+值  描述  
+[Domain\]User
+ 指定候选用户帐户。
+ 
+System 或 ""
+ 指定 Local System 帐户，这是一种操作系统和系统服务使用的具有高度特权的帐户。
+ 
+
+/rp Password 
+提供在 /ru [Domain\]User 参数中指定的用户帐户的密码。如果在指定用户帐户的时候忽略了这个参数，SchTasks.exe 会提示您输入密码，而且不显示键入的文本。 
+
+不要将 /rp 参数用于使用系统帐户 (/ru System) 的权限运行的任务。系统帐户没有密码，而 SchTasks.exe 也不提示输入密码。
+
+/mo Modifier 
+指定任务在其计划类型内的运行频率。此参数对于 MINUTE、HOURLY、DAILY、WEEKLY 或 MONTHLY 有效，但是可选的。默认值为 1。 
+
+ 
+计划类型  修饰符值  描述  
+MINUTE
+ 1 - 1439
+ 任务每 N 分钟运行一次。
+ 
+HOURLY
+ 1 - 23
+ 任务每 N 小时运行一次。
+ 
+DAILY
+ 1 - 365
+ 任务每 N 天运行一次。
+ 
+WEEKLY
+ 1 - 52
+ 任务每 N 周运行一次。
+ 
+ONCE
+ 没有修饰符。
+ 任务运行一次。
+ 
+ONSTART
+ 没有修饰符。
+ 任务在启动时运行。
+ 
+ONLOGON
+ 没有修饰符。
+ /u 参数指定的用户登录时，运行任务。
+ 
+ONIDLE
+ 没有修饰符。
+ 系统闲置 /i 参数（需要与 ONIDLE 一起使用）指定的分钟数之后运行任务。
+ 
+MONTHLY
+ 1 - 12
+ 任务每 N 月运行一次。
+ 
+MONTHLY
+ LASTDAY
+ 任务在月份的最后一天运行。
+ 
+MONTHLY
+ FIRST、SECOND、THIRD、FOURTH、LAST
+ 与 /dDay 参数一起使用，并在特定的周和天运行任务。例如，在月份的第三个周三。
+ 
+
+/d Day[,Day...] | * 
+指定周或月的一天（或几天）。只对 WEEKLY 或 MONTHLY 计划有效。 
+
+ 
+计划类型  修饰符  天值 (/d)  描述  
+WEEKLY
+ 1 - 52
+ MON - SUN[,MON - SUN...] | *
+ 可选项。MON 是默认值。通配符值 (*) 指每天。
+ 
+MONTHLY
+ FIRST、SECOND、THIRD、FOURTH、LAST
+ MON - SUN
+ 对于特定周计划是必需的。
+ 
+MONTHLY
+ 无或 {1 - 12}
+ 1 - 31
+ 仅在没有修饰符 (/mo) 参数（特定日期计划）的情况下或 /mo 为 1 - 12（“每 N 月”计划）时有效并且可选。默认值是 1 （月份的第一天）。
+ 
+
+/m Month[,Month...] 
+指定计划任务应在一年的某月或数月运行。有效值为 JAN - DEC。/m 参数仅对 MONTHLY 计划有效。在使用 LASTDAY 修饰符时，这个参数是必需的。 
+
+/i IdleTime 
+指定任务启动之前计算机空闲多少分钟。有效值是从 1 到 999 的整数。此参数只对 ONIDLE 计划有效，并且是必需的。
+
+/st StartTime 
+指定任务在一天的什么时间开始（每次开始时间），格式为 HH:MM 24 小时格式。默认值为本地计算机的当前时间。/st 参数只对 MINUTE、HOURLY、DAILY、WEEKLY、MONTHLY 和 ONCE 计划有效。此参数对于 ONCE 计划是必需的。
+
+/ri Interval 
+指定重复的时间间隔（以分钟计）。此参数不适用于以下计划类型：MINUTE、HOURLY、ONSTART、ONLOGON、ONIDLE。有效范围为 1 到 599940 分钟（599940 分钟 = 9999 小时）。如果指定了 /ET 或 /DU，则重复间隔默认为 10 分钟。
+
+/et EndTime 
+指定“分钟”或“小时”任务计划在一天的什么时间结束，格式为 HH:MM 24 小时格式。指定的结束时间之后，Schtasks 不重新启动任务，直到启动时间再次到来。默认情况下，任务计划没有结束时间。该参数是可选的，并且仅对“分钟”或“小时”计划有效。 
+
+要查看示例，请参阅：
+
+“计划任务每 N 分钟运行一次”部分中的“计划任务在非工作时间内每 100 分钟运行一次”。
+
+
+/du Duration 
+指定“分钟”或“小时”计划的最大时间长度，格式为 HHHH:MM 24 小时格式。指定的时间过去之后，Schtasks 不重新启动任务，直到启动时间再次到来。默认情况下，任务计划没有最大持续时间。该参数是可选的，并且仅对“分钟”或“小时”计划有效。 
+
+要查看示例，请参阅：
+
+“计划任务每 N 小时运行一次”部分中的“计划每 3 小时运行一次持续时间为 10 小时的任务”。
+
+
+/k 
+在 /et 或 /du 指定的时间停止任务运行的程序。如果没有 /k，Schtasks 在到达 /et 或 /du 指定的时间之后不再启动程序，但它不会停止仍在运行的程序。该参数是可选的，并且仅对“分钟”或“小时”计划有效。 
+
+要查看示例，请参阅：
+
+“计划任务每 N 分钟运行一次”部分中的“计划任务在非工作时间内每 100 分钟运行一次”。
+
+
+/sd StartDate 
+指定任务计划开始的日期。默认值为本地计算机上的当前日期。/sd 参数对于所有计划类型均有效，并且是可选的。 
+
+StartDate 参数的格式随着“控制面板”的“区域和语言选项”中为本地计算机选择的区域设置而变化。每个区域设置只有一种有效的格式。
+
+下表列出了有效的日期格式。使用与本地计算机“控制面板”的“区域和语言选项”中为“短日期”所选格式最为相似的格式。
+
+ 
+MM/DD/YYYY
+ 用于以月开头的格式，例如英语（美国）和西班牙语（巴拿马）。
+ 
+DD/MM/YYYY
+ 用于以日开头的格式，例如保加利亚语和荷兰语（荷兰）。
+ 
+YYYY/MM/DD
+ 用于以年开头的格式，例如瑞典语和法语（加拿大）。
+ 
+
+/ed EndDate 
+指定计划结束的日期。此参数是可选的。它对于 ONCE、ONSTART、ONLOGON 或 ONIDLE 计划无效。默认情况下，计划没有结束日期。 
+
+EndDate 参数的格式随着“控制面板”的“区域和语言选项”中为本地计算机选择的区域设置而变化。每个区域设置只有一种有效的格式。
+
+下表列出了有效的日期格式。使用与在本地计算机控制面板的“区域和语言选项”中为“短日期”选择的格式最为相似的格式。
+
+ 
+MM/DD/YYYY
+ 用于以月开头的格式，例如英语（美国）和西班牙语（巴拿马）。
+ 
+DD/MM/YYYY
+ 用于以日开头的格式，例如保加利亚语和荷兰语（荷兰）。
+ 
+YYYY/MM/DD
+ 用于以年开头的格式，例如瑞典语和法语（加拿大）。
+ 
+
+/it 
+指定只有在“运行方式”用户（运行任务的用户帐户）登录到计算机的情况下才运行任务。此参数不影响使用系统权限运行的任务。 
+
+默认情况下，在计划任务时或使用 /u 参数指定帐户（如果使用该参数）时，“运行方式”用户将是本地计算机的当前用户。但是，如果该命令包含 /ru 参数，“运行方式”用户则是由 /ru 参数指定的帐户。
+
+例如，请参阅：
+
+“计划任务每 N 天运行一次”部分中的“计划在我登录后每 70 天运行一次任务”。
+
+
+“计划使用不同权限运行的任务”部分中的“只在特定用户登录时运行任务”。
+
+
+/Z 
+指定在任务计划完成时删除任务。
+
+/F 
+指定如果指定任务已经存在，就创建任务并取消警告。
+
+/? 
+在命令提示符下显示帮助。
+
+计划任务每 N 分钟运行一次
+分钟计划语法
+schtasks /create /tn TaskName /tr TaskRun /sc minute [/mo {1 - 1439}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [{/et HH:MM | /du HHHH:MM} [/k]] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在一个分钟计划中，/sc minute 参数是必需的。/mo（修饰符）参数是可选的，它指定了每次运行任务之间间隔的分钟数。/mo 的默认值为 1（每分钟）。/et（结束时间）和 /du（持续时间）参数是可选的，并且可与或不与 /k（结束任务）参数一起使用。
+
+示例
+计划任务每 20 分钟运行一次
+下面的命令计划安全脚本 Sec.vbs 每 20 分钟运行一次。该命令使用 /sc 参数指定分钟计划，使用 /mo 参数指定时间间隔为 20 分钟。
+
+由于该命令没有包含开始日期或时间，因此任务在命令完成 20 分钟后启动，此后在系统运行时每 20 分钟运行一次。请注意，安全脚本源文件位于远程计算机上，但任务在本地计算机上计划并执行。
+
+schtasks /create /sc minute /mo 20 /tn "Security Script" /tr \\central\data\scripts\sec.vbs 
+
+计划任务在非工作时间内每 100 分钟运行一次
+下面的命令计划安全脚本 Sec.vbs 在本地计算机上每天下午 5:00 和次日上午 7:59 之间每 100 分钟运行一次。该命令使用 /sc 参数指定分钟计划，使用 /mo 参数指定时间间隔为 100 分钟。它使用 /st 和 /et 参数指定每天计划的开始时间和结束时间。它还使用 /k 参数停止在上午 7:59 仍在运行的脚本。如果没有 /k，Schtasks 就不会在上午 7:59 之后启动脚本，但是，如果在上午 6:20 启动的实例仍在运行，Schtasks 不会停止它。
+
+schtasks /create /tn "Security Script" /tr sec.vbs /sc minute /mo 100 /st 17:00 /et 08:00 /k 
+
+计划任务每 N 小时运行一次
+小时计划语法
+schtasks /create /tn TaskName /tr TaskRun /sc hourly [/mo {1 - 23}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [{/et HH:MM | /du HHHH:MM} [/k]] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在一个小时计划中，/sc hourly 参数是必需的。/mo（修饰符）参数是可选的，它指定了每次运行任务之间间隔的小时数。/mo 的默认值为 1（每小时）。/k（结束任务）参数是可选的，并且可与 /et（指定时间结束）或 /du（指定时间间隔后结束）一起使用。
+
+示例
+计划任务每五小时运行一次
+下面的命令计划 MyApp 程序从 2002 年 3 月的第一天起每五小时运行一次。它使用 /mo 参数来指定间隔时间，使用 /sd 参数来指定开始日期。由于该命令没有指定起始时间，因此当前时间作为起始时间。
+
+由于本地计算机设置为使用“区域和语言选项”中的“英语（津巴布韦）”选项，所以开始日期的格式为 MM/DD/YYYY (03/01/2002)。
+
+schtasks /create /sc hourly /mo 5 /sd 03/01/2002 /tn "My App" /tr c:\apps\myapp.exe 
+
+计划任务在每小时后五分钟运行一次
+下面的命令将计划 MyApp 程序从午夜过后五分钟起每小时运行一次。因为忽略了 /mo 参数，所以命令使用小时计划的默认值，即每 (1) 小时。如果该命令在上午 12:05 之后运行，则程序将在第二天才会运行。
+
+schtasks /create /sc hourly /st 00:05 /tn "My App" /tr c:\apps\myapp.exe 
+
+计划任务每 3 小时运行一次，持续时间为 10 小时
+以下命令计划 MyApp 程序每 3 小时运行一次，持续时间为 10 小时。
+
+该命令使用 /sc 参数指定小时计划，使用 /mo 参数指定时间间隔为 3 小时。它使用 /st 参数在午夜开始计划，并使用 /du 参数在 10 小时之后结束计划。由于程序仅运行几分钟，因此无需 /k 参数，该参数停止在持续时间到期时仍然运行的程序。
+
+schtasks /create /tn "My App" /tr myapp.exe /sc hourly /mo 3 /st 00:00 /du 0010:00 
+
+在此示例中，任务在上午 12:00、上午 3:00、上午 6:00 以及上午 9:00 运行。由于持续时间为 10 小时，任务不会在下午 12:00 运行，而是在第二天上午 12:00 再次开始。
+
+计划任务每 N 天运行一次
+每日计划语法
+schtasks /create /tn TaskName /tr TaskRun /sc daily [/mo {1 - 365}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在每日计划中，/sc daily 参数是必需的。/mo（修饰符）参数是可选的，它指定了每次运行任务之间间隔的天数。/mo 的默认值为 1（每天）。
+
+示例
+计划任务每天运行一次
+下面的示例计划 MyApp 程序在每天的上午 8:00 运行一次，直到 2002 年 12 月 31 日结束。由于它忽略了 /mo 参数，因此使用默认间隔 1 来每天运行命令。
+
+在此示例中，由于本地计算机系统在“控制面板”的“区域和语言选项”中设置为“英语（英国）”，因此结束日期的格式为 DD/MM/YYYY (31/12/2002)。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc daily /st 08:00 /ed 31/12/2002 
+
+计划任务每 12 天运行一次
+以下示例计划 MyApp 程序从 2002 年 12 月 31 日开始，每隔 12 天的下午 1:00 (13:00) 运行一次。该命令使用 /mo 参数指定间隔时间为两 (2) 天，而 /sd 和 /st 参数指定日期和时间。
+
+在此示例中，由于系统在“控制面板”的“区域和语言选项”中设置为“英语（津巴布韦）”，因此结束日期的格式为 MM/DD/YYYY (12/31/2002)。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc daily /mo 12 /sd 12/31/2002 /st 13:00 
+
+计划任务在我登录后每 70 天运行一次
+下面的命令计划安全脚本 Sec.vbs 每 70 天运行一次。该命令使用 /mo 参数来指定 70 天间隔时间。它还使用 /it 参数指定只有在其帐户下运行任务的用户登录到计算机时才运行任务。由于任务将使用我的用户帐户权限运行，因而任务仅在我登录时才运行。
+
+schtasks /create /tn "Security Script" /tr sec.vbs /sc daily /mo 70 /it 
+
+注意 
+
+要使用仅交互 (/it) 属性标识任务，请使用详细查询 (/query /v)。在一个带有 /it 的任务的详细查询显示中，Logon Mode 字段的值为 Interactive only。
+
+
+计划任务每 N 周运行一次
+周计划语法
+schtasks /create /tn TaskName /tr TaskRun /sc weekly [/mo {1 - 52}] [/d {MON - SUN[,MON - SUN...]| *}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在周计划中，/sc weekly 参数是必需的。/mo（修饰符）参数是可选的，它指定了每次运行任务之间间隔的周数。/mo 的默认值为 1（每周）。
+
+周计划也拥有一个可选的 /d 参数，用于计划任务在一周的指定天或所有天 (*) 运行。默认值为 MON（星期一）。每天 (*) 选项相当于计划每日任务。
+
+示例
+计划任务每六周运行一次
+下面的命令计划 MyApp 程序在远程计算机上每六周运行一次。该命令使用 /mo 参数来指定间隔。由于该命令忽略了 /d 参数，因此任务就在星期一运行。
+
+该命令也使用 /s 参数指定远程计算机，并使用 /u 参数，以用户 Adiminsitrator 帐户的权限运行该命令。因为忽略了 /p 参数，所以 SchTasks.exe 会提示用户输入 Administrator 帐户密码。
+
+另外，因为命令是远程运行的，所以命令中所有的路径，包括到 MyApp.exe 的路径，都是指远程计算机上的路径。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc weekly /mo 6 /s Server16 /u Admin01 
+
+计划任务在隔周的周五运行
+下面的命令计划任务在隔周的周五运行。它使用 /mo 参数来指定两周的间隔，使用 /d 参数来指定是一周内的哪一天。要计划任务在每个周五运行，要忽略 /mo 参数或将其设置为 1。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc weekly /mo 2 /d FRI 
+
+计划任务每 N 月运行一次
+语法
+schtasks /create /tn TaskName /tr TaskRun /sc monthly [/mo {1 - 12}] [/d {1 - 31}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在此计划类型中，/sc monthly 参数是必需的。/mo（修饰符）参数指定每次运行任务之间的月份数，它是可选的，默认值为 1（每月）。此计划类型也拥有一个可选的 /d 参数，用于计划任务在月份的指定日期运行。默认值是 1 （月份的第一天）。
+
+示例
+计划任务在每月的第一天运行
+下面的命令计划 MyApp 程序在每月的第一天运行。由于值 1 是 /mo（修饰符）参数和 /d（天）参数的默认值，因此该命令中省略了这两个参数。
+
+schtasks /create /tn "My App" /tr myapp.exe /sc monthly 
+
+计划任务每三个月运行一次
+下面的命令计划 MyApp 程序每三个月运行一次。它使用 /mo 参数来指定间隔。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo 3 
+
+计划任务在每隔一个月的第 21 天的午夜运行
+以下命令计划 MyApp 程序在每隔一个月的第 21 天的午夜运行。该命令指定此任务应运行一年，从 2002 年 7 月 2 日到 2003 年 6 月 30 日。
+
+该命令使用 /mo 参数指定月时间间隔（每两个月），/d 参数指定日期，而 /st 指定时间。它还使用 /sd 和 /ed 参数分别指定开始日期和结束日期。由于本地计算机在控制面板的“区域和语言选项”中设置为“英语（南非）”选项，因此以本地格式 YYYY/MM/DD 指定日期。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo 2 /d 21 /st 00:00 /sd 2002/07/01 /ed 2003/06/30 
+
+计划任务在周的指定天运行
+周计划语法
+schtasks /create /tn TaskName /tr TaskRun /sc weekly [/d {MON - SUN[,MON - SUN...]| *}] [/mo {1 - 52}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+“周的天”计划是周计划的变体。在周计划中，/sc weekly 参数是必需的。/mo（修饰符）参数是可选的，它指定了每次运行任务之间间隔的周数。/mo 的默认值为 1（每周）。/d 参数是可选的，它计划任务在周的指定天或所有天 (*) 运行。默认值为 MON（星期一）。每天选项 (/d *) 相当于计划每日任务。
+
+示例
+计划任务每星期三运行一次
+下面的命令计划 MyApp 程序在每周的星期三运行一次。该命令使用 /d 参数指定周的天。由于该命令忽略了 /mo 参数，因此任务每周运行一次。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc weekly /d WED 
+
+计划任务每隔八周在星期一和星期五运行
+以下命令计划任务每隔八周在星期一和星期五运行。它使用 /d 参数来指定天数，使用 /mo 参数指定八周时间间隔。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc weekly /mo 8 /d MON,FRI 
+
+计划任务在月份的指定周运行
+指定周的语法
+schtasks /create /tn TaskName /tr TaskRun /sc monthly /mo {FIRST | SECOND | THIRD | FOURTH | LAST} /d MON - SUN [/m {JAN - DEC[,JAN - DEC...]| *}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在此计划类型中，/sc monthly 参数、/mo（修饰符）参数以及 /d（天）参数是必需的。/mo（修饰符）参数指定任务运行的周。/d 参数指定一周中的第几天。（您可以仅为此计划类型指定一周中的某一天。）此计划也拥有一个可选的 /m（月份）参数，用于针对特定月份计划任务。
+
+示例
+计划任务在每月的第二个周日运行
+下面的命令计划 MyApp 程序在每月的第二个周日运行。它使用 /mo 参数指定每月的第二周，使用 /d 参数指定天。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo SECOND /d SUN 
+
+计划任务在三月和九月的第一个星期一运行
+下面的命令计划 MyApp 程序在三月和九月的第一个星期一运行。它使用 /mo 参数指定是月份的第一个星期，使用 /d 参数指定天。它使用 /m 参数指定月份，用一个逗号把月份参数隔开。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo FIRST /d MON /m MAR,SEP 
+
+计划任务在每月的特定日期运行
+特定日期语法
+schtasks /create /tn TaskName /tr TaskRun /sc monthly /d {1 - 31} [/m {JAN - DEC[,JAN - DEC...]| *}] [/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在特定日期计划类型中，/sc monthly 参数和 /d（天）参数是必需的。/d 参数指定月份的日期 (1 - 31)，而不是周的天。您可以在计划中仅指定一天。/mo（修饰符）参数对此计划类型无效。
+
+/m（月份）参数对此计划类型而言是可选的，默认值为每个月 (*)。Schtasks 不允许您针对在 /m 参数指定的月份中不出现的日期计划任务。但是，如果忽略 /m 参数，并针对不是在每个月中出现的日期（如 31 日）计划任务，则该任务不会在较短的月份发生。要针对月份的最后一天计划任务，请使用最后一天计划类型。
+
+示例
+计划任务在每月的第一天运行
+下面的命令计划 MyApp 程序在每月的第一天运行。因为默认修饰符是 none（即没有修饰符），默认天是第一天，默认的月份是每个月，所以该命令不需要任何其他参数。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly 
+
+计划任务在五月和六月的第 15 天运行
+下面的命令计划 MyApp 程序在 5 月 15 日和 6 月 15 日的下午 3:00 (15:00) 运行。它使用 /d 参数来指定日期，使用 /m 参数指定月份。它也使用 /st 参数来指定开始时间。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /d 15 /m MAY,JUN /st 15:00 
+
+计划任务在月份的最后一天运行
+最后一天语法
+schtasks /create /tn TaskName /tr TaskRun /sc monthly /mo LASTDAY /m {JAN - DEC[,JAN - DEC...]}[/st HH:MM] [/sd StartDate] [/ed EndDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在最后一天计划类型中，/sc monthly 参数、/mo LASTDAY（修饰符）参数以及 /m（月份）参数是必需的。/d（天）参数无效。
+
+示例
+计划任务在每月的最后一天运行
+要在每个月的最后一天运行程序，您必须创建三项独立的任务。各项任务分别包括具有相同天数的月份。每项任务都使用 /mo 参数来指定最后一天，使用 /m 参数指定月份。 
+
+下列命令计划 MyApp 程序在包含 31 天的每个月的最后一天运行。 
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo lastday /m JAN,MAR,MAY,JUL,AUG,OCT,DEC 
+
+下列命令计划 MyApp 程序在包含 30 天的每个月的最后一天运行。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo lastday /m APR,JUN,SEP,NOV 
+
+下列命令计划 MyApp 程序在二月的最后一天运行。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo lastday /m FEB 
+
+计划任务在二月的最后一天的下午 6:00 运行
+您还可以计划任务在某个月最后一天的特定时间运行。下列命令计划 MyApp 程序在二月最后一天的下午 6:00 运行。该命令使用 /mo 参数指定最后一天，使用 /m 参数指定月份，使用 /st 参数指定开始时间。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /mo lastday /m FEB /st 18:00 
+
+计划任务运行一次
+语法
+schtasks /create /tn TaskName /tr TaskRun /sc once /st HH : MM [/sd StartDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在运行一次计划类型中，/sc once 参数是必需的。/st 参数（指定任务运行时间）是必需的。/sd 参数（指定任务运行的日期）是可选的。/mo（修饰符）和 /ed（结束日期）参数对此计划类型无效。
+
+如果根据本地计算机的时间，指定的日期和时间已经过去，Schtasks 就不允许您计划任务运行一次。要在不同时区的远程计算机上计划任务运行一次，您必须在本地计算机上的日期和时间到来之前计划任务。
+
+示例
+计划任务运行一次
+以下命令计划 MyApp 程序在 2003 年 1 月 1 日的午夜运行。它使用 /sc 参数指定计划类型，并使用 /sd 和 st 指定日期和时间。
+
+由于本地计算机使用“控制面板”的“区域和语言选项”中的“英语（美国）”选项，因此开始日期的格式为 MM/DD/YYYY。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc once /sd 01/01/2003 /st 00:00 
+
+计划任务在每次系统启动时运行
+语法
+schtasks /create /tn TaskName /tr TaskRun /sc onstart [/sd StartDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+在启动时计划类型中，/sc onstart 参数是必需的。/sd（开始日期）参数是可选的，其默认值为当前日期。
+
+示例
+计划任务在系统启动时运行
+下面的命令计划 MyApp 程序在每次系统启动时运行，开始日期是 2001 年 3 月 15 日：
+
+由于本地计算机使用“控制面板”的“区域和语言选项”中的“英语（美国）”选项，因此开始日期的格式为 MM/DD/YYYY。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc onstart /sd 03/15/2001 
+
+计划任务在用户登录时运行
+语法
+schtasks /create /tn TaskName /tr TaskRun /sc onlogon [/sd StartDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+“登录时”计划类型计划任务在任何用户登录到计算机时运行。在“登录时”计划类型中，/sc onlogon 参数是必需的。/sd（开始日期）参数是可选的，其默认值为当前日期。
+
+示例
+计划任务在用户登录到远程计算机时运行
+下面的命令计划批处理文件在用户（任何用户）每次登录到远程计算机时运行。它使用 /s 参数指定远程计算机。因为命令是远程的，所以命令中所有的路径，包括批处理文件的路径，都是指远程计算机上的路径。
+
+schtasks /create /tn "Start Web Site" /tr c:\myiis\webstart.bat /sc onlogon /s Server23 
+
+计划任务在系统空闲时运行
+语法
+schtasks /create /tn TaskName /tr TaskRun /sc onidle /i {1 - 999} [/sd StartDate] [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+备注
+“空闲时”计划类型计划任务在 /i 参数指定的时间期间没有用户活动时运行。在“空闲时”计划类型中，/sc onidle 参数和 /i 参数是必需的。/sd（开始日期）是可选的，其默认值为当前日期。
+
+示例
+计划任务在计算机空闲时运行
+下面的命令计划 MyApp 程序在计算机空闲时运行。它使用必需的 /i 参数指定计算机必需持续空闲十分钟以后才启动任务。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc onidle /i 10 
+
+计划任务现在运行
+Schtasks 没有“现在运行”选项，但您可以模拟该选项，方法是创建运行一次，并且在几分钟内开始的任务。
+
+语法
+schtasks /create /tn TaskName /tr TaskRun /sc once [/st HH:MM] /sd MM/DD/YYYY [/it] [/ru {[Domain\]User [/rp Password] | System}] [/s Computer [/u [Domain\]User [/p Password]]]
+
+示例
+计划任务从现在起运行几分钟。
+下列命令计划任务在本地时间 2002 年 11 月 13 日上午 2:18 运行一次。
+
+由于本地计算机使用“控制面板”的“区域和语言选项”中的“英语（美国）”选项，因此开始日期的格式为 MM/DD/YYYY。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc once /st 14:18 /sd 11/13/2002 
+
+计划任务以不同权限运行
+您可以计划各种类型的任务以候选帐户的权限在本地计算机和远程计算机上运行。除了特定计划类型必需的参数之外，/ru 参数是必需的，而 /rp 参数是可选的。
+
+示例
+以 Administrator 权限在本地计算机上运行任务
+下面的命令计划 MyApp 程序在本地计算机上运行。它使用 /ru 指定任务应以用户 Administrator 帐户 (Admin06) 的权限运行。在此示例中，计划任务每星期二运行，但是您可以将任何计划类型用于以候选权限运行的任务。
+
+schtasks /create /tn "My App" /tr myapp.exe /sc weekly /d TUE /ru Admin06 
+
+作为响应，SchTasks.exe 会提示为 Admin06 帐户提供“运行方式”密码，然后显示成功消息。
+
+
+Please enter the run as password for Admin06: ********
+
+SUCCESS: The scheduled task "My App" has successfully been created.
+以候选权限在远程计算机上运行任务
+下面的命令计划 MyApp 程序每四天在 Marketing 计算机上运行。
+
+该命令使用 /sc 参数指定日计划，使用 /mo 参数指定时间间隔为四天。
+
+该命令使用 /s 参数提供远程计算机的名称，使用 /u 参数指定在远程计算机上拥有计划任务权限的帐户（Marketing 计算机上的 Admin01）。它还使用 /ru 参数指定任务应以用户的非 Administrator 帐户（Reskits 域中的 User01）权限运行。如果不使用 /ru 参数，任务将以 /u 指定的帐户权限运行。
+
+schtasks /create /tn "My App" /tr myapp.exe /sc daily /mo 4 /s Marketing /u Marketing\Admin01 /ru Reskits\User01 
+
+Schtasks 首次请求由 /u 参数（运行命令）所命名用户的密码，然后请求由 /ru 参数（运行任务）所命名用户的密码。对这些密码进行身份验证之后，Schtasks 显示表明已计划任务的消息。
+
+
+Type the password for Marketing\Admin01:********
+
+Please enter the run as password for Reskits\User01: ********
+
+SUCCESS: The scheduled task "My App" has successfully been created.
+仅在特定用户登录时运行任务
+下面的命令计划 AdminCheck.exe 程序每星期五上午 4:00 在 Public 计算机上运行，但是只有在计算机管理员登录时才运行。
+
+该命令使用 /sc 参数指定周计划，使用 /d 参数指定天，使用 /st 参数指定开始时间。
+
+该命令使用 /s 参数提供远程计算机的名称，使用 /u 参数指定在远程计算机上拥有计划任务权限的帐户。它还使用 /ru 参数把任务配置为以 Public 计算机的管理员 (Public\Admin01) 权限运行，使用 /it 参数表明仅在 Public\Admin01 帐户登录时才运行任务。
+
+schtasks /create /tn "Check Admin" /tr AdminCheck.exe /sc weekly /d FRI /st 04:00 /s Public /u Domain3\Admin06 /ru Public\Admin01 /it 
+
+注意 
+
+要使用仅交互 (/it) 属性标识任务，请使用详细查询 (/query /v)。在一个带有 /it 的任务的详细查询显示中，Logon Mode 字段的值为 Interactive only。
+
+
+计划任务以系统权限运行
+各种类型的任务都可以用系统帐户的权限在本地和远程计算机上运行。除了特定计划类型所需的参数之外，/ru system（或 /ru ""）参数也是必需的，而 /rp 参数无效。
+
+要点 
+
+系统帐户没有交互式登录权限。用户无法看到以系统权限运行的程序或任务，也无法与它们进行交互。
+
+
+/ru 参数确定运行任务的权限，而不是用来计划任务的权限。只有 Administrators 可以计划任务，与 /ru 参数的值无关。
+
+
+注意 
+
+要标识以系统权限运行的任务，请使用详细查询 (/query /v)。在系统运行任务的详细查询显示中，Run As User 字段拥有一个值 NT AUTHORITY\SYSTEM，而 Logon Mode 字段拥有一个值 Background only。
+
+
+示例
+以系统权限运行任务
+下面的命令计划 MyApp 程序以系统帐户权限在本地计算机上运行。在此示例中，任务计划在每月的第十四天运行，但是您可以将任何计划类型用于以系统权限运行的任务。
+
+该命令使用 /ru System 参数指定系统安全上下文。因为系统任务不需要密码，所以忽略 /rp 参数。
+
+schtasks /create /tn "My App" /tr c:\apps\myapp.exe /sc monthly /d 15 /ru System 
+
+作为响应，SchTasks.exe 显示一条信息性消息和一条成功消息。它不提示输入密码。
+
+
+INFO: The task will be created under user name ("NT AUTHORITY\SYSTEM").
+SUCCESS: The Scheduled task "My App" has successfully been created.
+以系统权限在远程计算机上运行任务
+以下命令计划 MyApp 程序以系统权限每天上午 4:00 在 Finance01 计算机上运行。
+
+此命令使用 /tn 参数命名任务，使用 /tr 参数指定 MyApp 程序的远程副本。它使用 /sc 参数指定日计划，但省略 /mo 参数，因为 1（每天）为默认值。它使用 /st 参数指定开始时间，此时间也是任务每天运行的时间。
+
+该命令使用 /s 参数提供远程计算机的名称，使用 /u 参数指定在远程计算机上拥有计划任务权限的帐户。它还使用 /ru 参数指定任务应在系统帐户下运行。如果不使用 /ru 参数，任务将以 /u 指定的帐户权限运行。
+
+schtasks /create /tn "My App" /tr myapp.exe /sc daily /st 04:00 /s Finance01 /u Admin01 /ru System 
+
+Schtasks 请求 /u 参数命名的用户的密码，并对该密码进行身份验证之后显示一条消息，表明已创建任务，而且任务将以系统帐户权限运行。
+
+
+Type the password for Admin01:**********
+
+INFO: The Schedule Task "My App" will be created under user name ("NT AUTHORITY\
+SYSTEM").
+SUCCESS: The scheduled task "My App" has successfully been created.
+计划任务运行多个程序
+每个任务只能运行一个程序。但是可以创建一个运行多个程序的批处理文件，然后计划一个任务来运行这个批处理文件。下面的过程演示了这个方法：
+
+1.创建一个启动所要运行程序的批处理文件。
+
+在此示例中，创建一个启动“事件查看器”(Eventvwr.exe) 和“系统监视器”(Perfmon.exe) 的批处理文件。
+
+
+启动文本编辑器，如“记事本”。
+
+
+键入每个程序的名称和可执行文件的完全合格路径。在这种情况下，文件包含下列语句。
+
+C:\Windows\System32\Eventvwr.exe C:\Windows\System32\Perfmon.exe
+
+
+将文件保存为 MyApps.bat。
+
+
+2.使用 SchTasks.exe 创建一个运行 MyApps.bat 的任务。
+
+以下命令创建了 Monitor 任务，每当有人登录时就运行该任务。它使用 /tn 参数命名任务，使用 /tr 参数运行 MyApps.bat。它使用 /sc 参数来指明 OnLogon 计划类型，并使用 /ru 参数以用户 Administrator 帐户的权限运行任务。
+
+schtasks /create /tn Monitor /tr C:\MyApps.bat /sc onlogon /ru Reskit\Administrator
+
+该命令的结果是，每当用户登录到计算机，任务就启动“事件查看器”和“系统监视器”。
+
+
+计划任务在远程计算机上运行
+要计划任务在远程计算机上运行，您必须把任务添加到远程计算机的计划中。可以在远程计算机上计划各种类型的任务，但必须满足以下条件。
+
+您必须具有计划任务的权限。因此，您必须以属于远程计算机上 Administrators 组成员的帐户登录到本地计算机，或者，您必须使用 /u 参数提供远程计算机管理员的凭据。
+
+
+只有在本地和远程计算机处于同一个域，或者本机计算机处于远程计算机域信任的域时，您才能使用 /u 参数。否则，远程计算机无法对指定的用户帐户进行身份验证，也无法验证该帐户是否为 Administrators 组的成员。
+
+
+您必须具有足够的权限才能在远程计算机上运行。不同的任务要求不同的权限。默认情况下，任务以本地计算机当前用户的权限运行，或如果使用 /u 参数，任务就以 /u 参数指定的帐户权限运行。但是，您可以使用 /ru 参数以另一个用户帐户的权限或以系统权限运行任务。
+
+
+示例
+管理员在远程计算机上计划任务
+下面的命令计划 MyApp 程序从现在开始每十天在 SRV01 远程计算机上运行。该命令使用 /s 参数提供远程计算机的名称。由于本地当前用户为远程计算机的管理员，因此不必使用为计划任务提供候选权限的 /u 参数。
+
+请注意，在远程计算机上计划任务时，所有参数都是指远程计算机。因此，/tr 参数指定的可执行文件是指远程计算机上的 MyApp.exe 的副本。
+
+schtasks /create /s SRV01 /tn "My App" /tr "c:\program files\corpapps\myapp.exe" /sc daily /mo 10 
+
+作为响应，Schtasks 将显示一条表明任务已计划的成功消息。
+
+用户在远程计算机上计划命令（情况 1）
+下面的命令计划 MyApp 程序在 SRV06 远程计算机上每三小时运行一次。由于需要“管理员”权限来计划任务，因此该命令使用 /u 和 /p 参数提供用户管理员帐户（Reskits 域中的 Admin01）的凭据。默认情况下，这些权限还用来运行任务。但是，由于任务不需要“管理员”权限就能运行，因此该命令包括 /ru 和 /rp 参数，以取代默认值，并以用户的非“管理员”帐户的权限在远程计算机上运行任务。
+
+schtasks /create /s SRV06 /tn "My App" /tr "c:\program files\corpapps\myapp.exe" /sc hourly /mo 3 /u reskits\admin01 /p R43253@4$ /ru SRV06\user03 /rp MyFav!!Pswd 
+
+作为响应，Schtasks 将显示一条表明任务已计划的成功消息。
+
+用户在远程计算机上计划命令（情况 2）
+下面的命令计划 MyApp 程序每月的最后一天在 SRV02 远程计算机上运行。由于本地当前用户 (user03) 不是远程计算机的管理员，因此该命令使用 /u 参数提供用户“管理员”帐户（Reskits 域中的 Admin01）的凭据。“管理员”帐户权限将用来计划任务和运行任务。
+
+schtasks /create /s SRV02 /tn "My App" /tr "c:\program files\corpapps\myapp.exe" /sc monthly /mo LASTDAY /m * /u reskits\admin01 
+
+由于该命令没有包含 /p（密码）参数，因此 Schtasks 会提示输入密码。然后，它显示一条成功消息，在此情况下，是一条警告。
+
+
+Type the password for reskits\admin01:********
+
+SUCCESS: The scheduled task "My App" has successfully been created.
+
+WARNING: The Scheduled task "My App" has been created, but may not run because
+the account information could not be set.
+此警告表示远程域无法对 /u 参数指定的帐户进行身份验证。在此种情况下，远程域无法对用户帐户进行身份验证，因为本地计算机不是远程计算机域信任的域的成员。如果发生这种情况，任务作业就会出现在计划任务的列表中，但任务实际上为空，所以不会运行。
+
+以下来自一个详细查询的显示内容指明任务所遇到的问题。在显示内容中，请注意“下次运行时间”的值是“永不过期”，“作为用户运行”的值是“无法从任务计划程序数据库检索”。
+
+如果此计算机是同一域或可信域的成员，任务就会成功计划，并会按指定的方式运行。
+
+
+HostName:                             SRV44
+TaskName:                             My App
+Next Run Time:                        Never
+Status:
+Logon mode:                           Interactive/Background
+Last Run Time:                        Never
+Last Result:                          0
+Creator:                              user03
+Schedule:                             At 3:52 PM on day 31 of every month, start
+ starting 12/14/2001
+Task To Run:                          c:\program files\corpapps\myapp.exe
+Start In:                             myapp.exe
+Comment:                              N/A
+Scheduled Task State:                 Disabled
+Scheduled Type:                       Monthly
+Start Time:                           3:52:00 PM
+Start Date:                           12/14/2001
+End Date:                             N/A
+Days:                                 31
+Months:                               JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NO
+V,DEC
+Run As User:                          Could not be retrieved from the task sched
+uler database
+Delete Task If Not Rescheduled:       Enabled
+Stop Task If Runs X Hours and X Mins: 72:0
+Repeat: Every:                        Disabled
+Repeat: Until: Time:                  Disabled
+Repeat: Until: Duration:              Disabled
+Repeat: Stop If Still Running:        Disabled
+Idle Time:                            Disabled
+Power Management:                     Disabled
+备注
+要以另一个用户的权限运行 /create 命令，请使用 /u 参数。只有在远程计算机上计划任务时，/u 参数才有效。
+
+
+要查看更多 schtasks /create 示例，请在命令提示符下键入 schtasks /create /?。
+
+
+要计划任务以另一个用户的权限运行，请使用 /ru 参数。/ru 参数对于本地和远程计算机上的任务均有效。
+
+
+要使用 /u 参数，本地计算机必须与远程计算机处于同一个域，或者必须处于远程计算机域信任的域中。否则，要么不创建任务，要么任务作业为空，并且任务不运行。
+
+
+Schtasks 会始终提示提供密码（除非您提供了密码），即使使用当前用户帐户在本地计算机上计划任务。这是 Schtasks 的正常行为。
+
+
+SchTasks 不验证程序文件的位置或用户帐户密码。如果没有为用户帐户输入正确的文件位置或正确的密码，任务仍然可以创建，但不会运行。另外，如果帐户的密码更改或过期，而且没有更改存储在任务中的密码，那么任务也不会运行。
+
+
+系统帐户没有交互式登录权限。用户看不到以系统权限运行的程序，也不能与其交互。
+
+
+每个任务只能运行一个程序。但是可以创建一个启动多个任务的批处理文件，然后计划运行该批处理文件的任务。
+
+
+创建任务之后即可对其进行测试。使用 run 操作来测试任务，然后从 SchedLgU.txt 文件 (Systemroot\SchedLgU.txt ) 中查阅错误。
+
+
+schtasks change
+更改一个或多个任务属性。
+
+任务运行的程序 (/tr)。
+
+
+任务运行的用户帐户 (/ru)。
+
+
+用户帐户的密码 (/rp)。
+
+
+将仅交互属性添加到任务 (/it)。
+
+
+语法
+schtasks /change /tn TaskName [/s Computer [/u [Domain\]User [/p Password]]] [/ru {[Domain\]User | System}] [/rp Password] [/tr TaskRun] [/st StartTime] [/ri Interval] [{/et EndTime | /du Duration} [/k]] [/sd StartDate] [/ed EndDate] [/{ENABLE | DISABLE}] [/it] [/z]
+
+参数
+/tn TaskName 
+标识要更改的任务。输入任务名。
+
+/s Computer 
+指定远程计算机的名称或 IP 地址（带有或不带有反斜杠）。默认值是本地计算机。
+
+/u [Domain\] User 
+使用指定用户帐户的权限运行该命令。默认值为本地计算机上当前用户的权限。指定的用户帐户必须是远程计算机上 Administrators 组的成员。只有在远程计算机 (/s) 上更改任务时，/u 和 /p 参数才有效。
+
+/p Password 
+指定在 /u 参数中指定的用户帐户的密码。如果使用 /u 参数，但忽略 /p 参数或密码参数，Schtasks 将提示您输入密码。 
+
+只有使用 /s 时，/u 和 /p 参数才有效。
+
+/ru {[Domain\]User | System} 
+指定更改运行任务的用户帐户。对于指定 Local System 帐户，有效项为“”、“NT AUTHORITY\SYSTEM”或“SYSTEM”。 
+
+在更改用户帐户时，同时必须更改用户密码。如果某个命令包含 /ru 参数，但不包含 /rp 参数，schtasks 就会提示提供新密码。
+
+使用本地系统帐户的权限运行任务不需要密码或不提示输入密码。
+
+/rp Password 
+为现有用户帐户或 /ru 参数指定的用户帐户指定一个新密码。在本地系统帐户中使用时，此参数会被忽略。
+
+/tr TaskRun 
+更改任务运行的程序。输入可执行文件、脚本文件或批处理文件的完全合格的路径和文件名。如果忽略该路径，SchTasks 将假定文件在 systemroot\System32 目录下。指定的程序替换任务运行的原始程序。
+
+/st Starttime 
+使用 24 小时时间格式 HH:mm 指定任务的开始时间。例如，值 14:30 相当于 12 小时时间格式的下午 2:30。
+
+/ri Interval 
+指定计划任务的重复间隔（以分钟计）。有效范围为 1 - 599940（599940 分钟 = 9999 小时）。
+
+/et EndTime 
+使用 24 小时时间格式 HH:mm 指定任务的结束时间。例如，值 14:30 相当于 12 小时时间格式的下午 2:30。
+
+/du Duration 
+指定关闭 EndTime 或 Duration 的任务（如果指定的话）。
+
+/k 
+在 /et 或 /du 指定的时间停止任务运行的程序。如果没有 /k，Schtasks 在到达 /et 或 /du 指定的时间之后不再启动程序，但它不会停止仍在运行的程序。此参数是可选的，并且仅对 MINUTE 或 HOURLY 计划有效。
+
+/sd StartDate 
+指定任务应运行的第一个日期。日期格式为 mm/dd/yyyy。
+
+/ed EndDate 
+指定任务应运行的最后一个日期。格式为 mm/dd/yyyy。
+
+/ENABLE 
+指定启用已计划的任务。
+
+/DISABLE 
+指定禁用已计划的任务。
+
+/it 
+指定仅在“运行方式”用户（运行任务的用户帐户）登录到计算机时才运行已计划的任务。 
+
+此参数不会影响使用系统权限运行的任务，也不会影响已经设置仅交互属性的任务。不能使用更改命令从任务中删除仅交互属性。
+
+默认情况下，在计划任务时或由 /u 参数（如果使用该参数）指定帐户时，“运行方式”用户将是本地计算机的当前用户。但是，如果该命令包含 /ru 参数，“运行方式”用户则是由 /ru 参数指定的帐户。
+
+/z 
+指定在计划完成时删除任务。
+
+/? 
+在命令提示符下显示帮助。
+
+备注
+/tn 和 /s 参数标识该任务。/tr、/ru 和 /rp 参数指定可以更改的任务属性。
+
+
+/ru 和 /rp 参数指定运行任务的权限。/u 和 /p 参数指定用于更改任务的权限。
+
+
+要在远程计算机上更改任务，用户必须使用属于远程计算机上 Administrators 组成员的帐户登录到本地计算机。
+
+
+要使用另一个用户 (/u, /p) 的权限运行 /change 命令，本地计算机上必须与远程计算机处于同一个域，或者必须处于远程计算机域信任的域中。
+
+
+系统帐户没有交互式登录权限。用户看不到以系统权限运行的程序，也不能与其交互。
+
+
+要使用 /it 属性标识任务，请使用详细查询 (/query /v)。在一个带有 /it 的任务的详细查询显示中，Logon Mode 字段的值为 Interactive only。
+
+
+示例
+更改任务运行的程序
+下面的命令将 Virus Check 任务运行的程序由 VirusCheck.exe 更改为 VirusCheck2.exe。此命令使用 /tn 参数标识任务，使用 /tr 参数指定任务的新程序。（不能更改任务名称。）
+
+schtasks /change /tn "Virus Check" /tr C:\VirusCheck2.exe 
+
+作为响应，SchTasks.exe 显示以下成功消息：
+
+SUCCESS: The parameters of the scheduled task "Virus Check" have been changed.此命令的结果是，Virus Check 任务现运行 VirusCheck2.exe。
+
+更改远程任务的密码
+以下命令用于更改远程计算机 Svr01 上 RemindMe 任务的用户帐户密码。该命令使用 /tn 参数标识任务，使用 /s 参数指定远程计算机。它使用 /rp 参数指定新的密码 p@ssWord3。
+
+在用户帐户密码过期或更改时需要执行此程序。如果保存在任务中的密码不再有效，任务不会运行。
+
+schtasks /change /tn RemindMe /s Svr01 /rp p@ssWord3 
+
+作为响应，SchTasks.exe 显示下列成功消息：
+
+SUCCESS: The parameters of the scheduled task "RemindMe" have been changed.此命令的结果是，RemindMe 任务现在以其初始的用户帐户运行，但拥有一个新密码。
+
+更改任务的程序和用户帐户
+以下命令用于更改任务运行的程序以及任务运行的用户帐户。实质上，它将旧的计划用于新的任务。此命令将 ChkNews 任务（该任务每天早上 9:00 启动 Notepad.exe）更改为启动 Internet Explorer。
+
+该命令使用 /tn 参数来标识任务。它使用 /tr 参数更改任务运行的程序，使用 /ru 参数更改任务运行的用户帐户。
+
+忽略为用户帐户提供密码的 /rp 参数。必须为帐户提供密码，但可以使用 /rp 参数，并以明文形式键入密码，或等待 SchTasks.exe 提示您输入密码，然后以不显示文本的方式输入密码。
+
+schtasks /change /tn ChkNews /tr "c:\program files\Internet Explorer\iexplore.exe" /ru DomainX\Admin01 
+
+作为响应，SchTasks.exe 要求输入用户帐户的密码。它不显示键入的文本，因此密码不可见。
+
+Please enter the password for DomainX\Admin01: 请注意，/tn 参数标识任务，/tr 和 /ru 参数更改任务的属性。不能使用另外一个参数来标识任务，而且不能更改任务的名称。
+
+作为响应，SchTasks.exe 显示下列成功消息：
+
+SUCCESS: The parameters of the scheduled task "ChkNews" have been changed.此命令的结果是，ChkNews 任务现在使用“管理员”帐户的权限运行 Internet Explorer。
+
+将程序更改为系统帐户
+以下命令用于更改 SecurityScript 任务，以使其以“系统”帐户权限运行。它使用 /ru "" 参数来表示系统帐户。
+
+schtasks /change /tn SecurityScript /ru "" 
+
+作为响应，SchTasks.exe 显示下列成功消息：
+
+
+INFO: The run as user name for the scheduled task "SecurityScript" will be changed to "NT AUTHORITY\SYSTEM".
+SUCCESS: The parameters of the scheduled task "SecurityScript" have been changed.
+因为任务以系统帐户权限运行不需要密码，所以 SchTasks.exe 不提示输入密码。
+
+仅在我登录时才运行程序
+以下命令将仅交互属性添加到现有任务 MyApp 中。此属性确保只有在“运行方式”用户（即运行任务的用户帐户）登录到计算机的情况下才运行任务。
+
+此命令使用 /tn 参数标识任务，并使用 /it 参数将仅交互属性添加到任务中。由于任务已经以我的用户帐户权限运行，所以我不需要更改任务的 /ru 参数。
+
+schtasks /change /tn MyApp /it 
+
+作为响应，SchTasks.exe 显示以下成功消息。
+
+SUCCESS: The parameters of the scheduled task "MyApp" have been changed.schtasks run
+立即运行计划任务。run 操作忽略计划，但使用程序文件位置、用户帐户和保存在任务中的密码立即运行任务。
+
+语法
+schtasks /run /tn TaskName [/s Computer [/u [Domain\]User [/p Password]]]
+
+参数
+/tn TaskName 
+必需。标识任务。 
+
+/s Computer 
+指定远程计算机的名称或 IP 地址（带有或不带有反斜杠）。默认设置为本地计算机。
+
+/u [Domain\] User 
+使用指定用户帐户的权限运行该命令。默认情况下，使用本地计算机当前用户的权限运行该命令。 
+
+指定的用户帐户必须是远程计算机上 Administrators 组的成员。只有使用 /s 时，/u 和 /p 参数才有效。
+
+/p Password 
+指定在 /u 参数中指定的用户帐户的密码。如果使用 /u 参数，但忽略 /p 参数或密码参数，Schtasks 将提示您输入密码。 
+
+只有使用 /s 时，/u 和 /p 参数才有效。
+
+/? 
+在命令提示符下显示帮助。
+
+备注
+使用这个操作来测试任务。如果任务没有运行，请查阅“任务计划程序服务”事务日志 Systemroot\SchedLgU.txt，以获取错误。
+
+
+运行任务既不会影响任务计划，也不会更改为任务计划好的下次运行时间。
+
+
+要远程运行任务，必须在远程计算机上计划任务。在运行该任务时，它仅在远程计算机上运行。要验证任务正在远程计算机上运行，请使用“任务管理器”或“任务计划程序”事务日志 Systemroot\SchedLgU.txt。
+
+
+示例
+在本地计算机上运行任务
+以下命令用于启动“Security Script”任务。
+
+schtasks /run /tn "Security Script" 
+
+作为响应，SchTasks.exe 启动与任务相关联的脚本并显示以下消息：
+
+SUCCESS: Attempted to run the scheduled task "Security Script".正如消息提示的那样，Schtasks 尝试启动程序，但它无法验证该程序实际上已经启动。
+
+在远程计算机上运行任务
+以下命令用于在远程计算机 Svr01 上启动 Update 任务：
+
+schtasks /run /tn Update /s Svr01 
+
+在这种情况下，SchTasks.exe 显示以下错误消息：
+
+ERROR: Unable to run the scheduled task "Update".查看 Svr01 上的“计划任务程序”事务日志 C:\Windows\SchedLgU.txt 以获取错误的原因。在这种情况下，日志中显示以下条目：
+
+
+"Update.job" (update.exe) 3/26/2001 1:15:46 PM ** ERROR **
+The attempt to log on to the account associated with the task failed, therefore, the task did not run.
+The specific error is:
+0x8007052e: Logon failure: unknown user name or bad password.
+Verify that the task's Run-as name and password are valid and try again.
+显然，任务中的用户名或密码在此系统中无效。下面的 schtasks /change 命令用于更新 Svr01 上 Update 任务的用户名和密码：
+
+schtasks /change /tn Update /s Svr01 /ru Administrator /rp PassW@rd3 
+
+在 change 命令完成之后，重新运行 run 命令。此时，Update.exe 程序启动，SchTasks.exe 显示以下消息：
+
+SUCCESS: Attempted to run the scheduled task "Update".正如消息提示的那样，Schtasks 尝试启动程序，但它无法验证该程序实际上已经启动。
+
+schtasks end
+停止由任务启动的程序。
+
+语法
+schtasks /end /tn TaskName [/s Computer [/u [Domain\]User [/p Password]]]
+
+参数
+/tn TaskName 
+必需。标识启动程序的任务。 
+
+/s Computer 
+指定远程计算机的名称或 IP 地址。默认设置为本地计算机。
+
+/u [Domain\] User 
+使用指定用户帐户的权限运行该命令。默认情况下，使用本地计算机当前用户的权限运行该命令。 
+
+指定的用户帐户必须是远程计算机上 Administrators 组的成员。只有使用 /s 时，/u 和 /p 参数才有效。
+
+/p Password 
+指定在 /u 参数中指定的用户帐户的密码。如果使用 /u 参数，但忽略 /p 参数或密码参数，Schtasks 将提示您输入密码。 
+
+只有使用 /s 时，/u 和 /p 参数才有效。
+
+/? 
+显示帮助。
+
+备注
+SchTasks.exe 只终止由计划任务启动的程序实例。要停止其他进程，请使用 TaskKill，它是一个包含在 Windows XP Professional 中的工具。有关 TaskKill 的详细信息，请参阅 Taskkill。
+
+
+示例
+终止本地计算机上的任务
+以下命令用于终止由 My Notepad 任务启动的 Notepad.exe 实例：
+
+schtasks /end /tn "My Notepad" 
+
+作为响应，SchTasks.exe 停止由任务启动的 Notepad.exe 实例，并显示以下成功消息：
+
+SUCCESS: The scheduled task "My Notepad" has been terminated successfully.终止远程计算机上的任务
+以下命令用于终止远程计算机 Svr01 上由 InternetOn 任务启动的 Internet Explorer 实例：
+
+schtasks /end /tn InternetOn /s Svr01 
+
+作为响应，SchTasks.exe 停止由任务启动的 Internet Explorer 实例，并显示以下成功消息：
+
+SUCCESS: The scheduled task "InternetOn" has been terminated successfully.schtasks delete
+删除计划任务。
+
+语法
+schtasks /delete /tn {TaskName | *} [/f] [/s Computer [/u [Domain\]User [/p Password]]]
+
+参数
+/tn {TaskName | *} 
+必需。标识要删除的任务。 
+
+ 
+值  描述  
+TaskName
+ 删除已命名任务。
+ 
+*
+ 删除计算机上的所有计划任务。
+ 
+
+/f 
+阻止确认消息。不警告就删除任务。
+
+/s Computer 
+指定远程计算机的名称或 IP 地址（带有或不带有反斜杠）。默认设置为本地计算机。
+
+/u [Domain\] User 
+使用指定用户帐户的权限运行该命令。默认情况下，使用本地计算机当前用户的权限运行该命令。 
+
+指定的用户帐户必须是远程计算机上 Administrators 组的成员。只有使用 /s 时，/u 和 /p 参数才有效。
+
+/p Password 
+指定在 /u 参数中指定的用户帐户的密码。如果使用 /u 参数，但忽略 /p 参数或密码参数，Schtasks 将提示您输入密码。 
+
+只有使用 /s 时，/u 和 /p 参数才有效。
+
+/? 
+在命令提示符下显示帮助。
+
+备注
+delete 操作从计划中删除任务。它不删除任务运行的程序或中断正在运行的程序。
+
+
+delete * 命令删除所有为计算机计划的任务，而不仅仅是删除由当前用户计划的任务。
+
+
+示例
+从远程计算机上的计划中删除任务
+下面的命令从远程计算机上的计划中删除“Start Mail”任务。它使用 /s 参数来标识远程计算机。
+
+schtasks /delete /tn "Start Mail" /s Svr16 
+
+作为响应， SchTasks.exe 显示以下确认消息。要删除任务，请键入 y。要取消命令，请键入 n：
+
+WARNING: Are you sure you want to remove the task "Start Mail" (Y/N )? 
+SUCCESS: The scheduled task "Start Mail" was successfully deleted.删除所有为本地计算机计划的任务。
+下面的命令从本地计算机的计划中删除所有的任务，包括由其他用户计划的任务。它使用 /tn * 参数代表计算机上所有的任务，使用/f 参数取消确认消息。
+
+schtasks /delete /tn * /f 
+
+作为响应，SchTasks.exe 显示以下成功消息以表明只删除了计划任务 SecureScript。
+
+SUCCESS: The scheduled task "SecureScript" was successfully deleted. 
+
+schtasks query
+显示计划在计算机上运行的任务。
+
+语法
+Schtasks [/query] [/fo {TABLE | LIST | CSV}] [/nh] [/v] [/s Computer [/u [Domain\]User [/p Password]]]
+
+参数
+[/query] 
+操作名称可选。键入不带任何参数的 schtasks 执行查询。
+
+/fo {TABLE| LIST| CSV} 
+指定输出格式。TABLE 为默认值。
+
+/nh 
+忽略表格显示中的列标题。此参数对 TABLE 和 CSV 输出格式有效。
+
+/v 
+将任务的高级属性添加到显示中。 
+
+使用 /v 的查询格式应该设置为 LIST 或 CSV。
+
+/s Computer 
+指定远程计算机的名称或 IP 地址（带有或不带有反斜杠）。默认设置为本地计算机。
+
+/u [Domain\] User 
+使用指定用户帐户的权限运行该命令。默认情况下，使用本地计算机当前用户的权限运行该命令。 
+
+指定的用户帐户必须是远程计算机上 Administrators 组的成员。只有使用 /s 时，/u 和 /p 参数才有效。
+
+/p Password 
+指定在 /u 参数中指定的用户帐户的密码。如果使用 /u，但忽略 /p 或密码参数，Schtasks 将提示您输入密码。 
+
+只有使用 /s 时，/u 和 /p 参数才有效。
+
+/? 
+在命令提示符下显示帮助。
+
+备注
+query 操作将列出用户有权查看的所有任务。管理员可以查看计算机上的所有任务。用户只能查看他们计划的任务。
+
+
+示例
+显示本地计算机上的计划任务
+下面的命令显示本地计算机计划的所有任务。这些命令得到的结果相同，并可以交换使用。
+
+schtasks 
+
+schtasks /query 
+
+作为响应，SchTasks.exe 以默认的简单表格格式显示任务，如下表所示：
+
+
+TaskName                  Next Run Time            Status
+========================= ======================== ==============
+Microsoft Outlook         At logon time            
+SecureScript              14:42:00 PM , 2/4/2001   
+显示已计划任务的高级属性
+下面的命令要求详细的显示本地计算机上的任务。它使用 /v 参数来请求详细显示，使用 /fo LIST 参数将显示格式化为易于阅读的列表。这个命令可以用来验证创建的任务有预期的循环模式。
+
+schtasks /query /fo LIST /v 
+
+作为响应，SchTasks.exe 显示所有任务的详细属性列表。以下显示给出了一个计划在每月最后一个周五的上午 4:00 运行的任务列表：
+
+
+HostName:                                  RESKIT01
+TaskName:                                  SecureScript
+Next Run Time:                             4:00:00 AM , 3/30/2001
+Status:                                    Not yet run
+Logon mode:                                Interactive/Background
+Last Run Time:                             Never
+Last Result:                               0
+Creator:                                   user01
+Schedule:                                  At 4:00 AM on the last Fri of every month, starting 3/24/2001
+Task To Run:                               C:\WINDOWS\system32\notepad.exe
+Start In:                                  notepad.exe
+Comment:                                   N/A
+Scheduled Task State:                      Enabled
+Scheduled Type:                            Monthly
+Modifier:                                  Last FRIDAY
+Start Time:                                4:00:00 AM
+Start Date:                                3/24/2001
+End Date:                                  N/A
+Days:                                      FRIDAY
+Months:                                    JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
+Run As User:                               RESKIT\user01
+Delete Task If Not Rescheduled:            Enabled
+Stop Task If Runs X Hours and X Mins:      72:0
+Repeat: Until Time:                        Disabled
+Repeat: Duration:                          Disabled
+Repeat: Stop If Still Running:             Disabled
+Idle: Start Time(For IDLE Scheduled Type): Disabled
+Idle: Only Start If Idle for X Minutes:    Disabled
+Idle: If Not Idle Retry For X Minutes:     Disabled
+Idle: Stop Task If Idle State End:         Disabled
+Power Mgmt: No Start On Batteries:         Disabled
+Power Mgmt: Stop On Battery Mode:          Disabled
+将为远程计算机计划的任务记入日志
+下面的命令请求为远程计算机计划的任务列表，并将任务添加到本地计算机中以逗号分隔的日志文件中。此命令的格式可以用来收集和跟踪为多个计算机计划的任务。
+
+该命令使用 /s 参数标识远程计算机 Reskit16，使用 /fo 参数指定格式，使用 /nh 参数取消列标题。>>附加符号将输出重定向到本地计算机 Svr01 上的任务日志 p0102.csv。因为命令在远程计算机上运行，所以本地计算机路径必须是完全合格的。
+
+schtasks /query /s Reskit16 /fo csv /nh >> \\svr01\data\tasklogs\p0102.csv 
+
+作为响应，SchTasks.exe 会把为计算机 Reskit16 计划的任务添加到本地计算机 Svr01 上的 p0102.csv 文件中。
+
+备注
+此帮助文件描述 Windows Server? 2003 家族中包含的 Schtasks.exe 的版本。有关 Windows XP Professional 中的 Schtasks.exe 的版本信息，请参阅 Windows XP Professional“帮助”中的 Schtasks 主题。
+
+
+SchTasks.exe 执行与“控制面板”中的“计划任务”相同的操作。您可以一起使用这些工具，也可以互换使用。
+
+
+SchTasks 取代了包含在 Windows 早期版本中的工具 At.exe。尽管 Windows Server? 2003 家族中仍然包含 At.exe，但是建议使用 Schtasks 这个命令行任务计划工具。
+
+
+Schtasks 命令中的参数可以按任何顺序显示。键入不带任何参数的 schtasks 执行查询。
+
+
+Schtasks 的权限 
+
+
+必须具有运行该命令的权限。任何用户都可以在本地计算机上计划任务，而且他们可以查看和更改他们所计划的任务。Administrators 组的成员可以计划、查看和更改本地计算机上的所有任务。
+
+
+要在远程计算机上计划、查看或更改任务，您必须是远程计算机上 Administrators 组的成员，或者必须使用 /u 参数提供远程计算机管理员的凭据。
+
+
+只有在本地和远程计算机处于同一个域或本地计算机处于远程计算机域信任的域中，您才可以在 /create 或 /change 操作中使用 /u 参数。否则，远程计算机无法对指定的用户帐户进行身份验证，也无法验证该帐户是否为 Administrators 组的成员。
+
+
+必须具有运行该任务的权限。不同的任务要求不同的权限。默认情况下，使用本地计算机的当前用户权限或使用 /u 参数指定的用户权限（如果包含的话）运行任务。要使用不同用户帐户的权限或使用系统权限运行任务，请使用 /ru 参数。
+
+
+要验证计划运行或要找出计划不运行的原因，请查看“任务计划”服务事务日志 Systemroot\SchedLgU.txt。该日志记录了由所有使用该服务的工具（包括“计划任务”和 SchTasks.exe 在内）启动的尝试运行。
+
+
+损坏任务文件的情况极少发生。已损坏文件不会运行。在已损坏任务上试图执行某项操作时，SchTasks.exe 显示以下错误消息：
+
+
+ERROR: The data is invalid.已损坏任务无法恢复。要恢复系统的计划任务特征，请使用 SchTasks.exe 或“计划任务”从系统中删除任务并重新计划。
+
+
+
+
+
+注:以上资料是抄取于http://technet.microsoft.com/zh-cn/cc772785%28WS.10%29.aspx

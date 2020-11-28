@@ -1,0 +1,2 @@
+例：更改计算机名abc为123
+wmic computersystem where "name='abc'" call rename 123

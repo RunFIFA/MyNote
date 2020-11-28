@@ -1,0 +1,18 @@
+安装ssh  	sudo apt -y install openssh-server
+查看是否安装ssh  rpm -qa |grep ssh
+开启ssh 	sudo service ssh start
+连接		ssh用户名@IP
+查看是否开启ssh	sudo ps -e |grep ssh
+查看ssh端口	grep Port /etc/ssh/sshd_config
+修改ssh端口	sudo vim /etc/ssh/sshd_config
+
+
+
+
+dpkg -l package 查看包版本
+dpkg -P package 移除软件
+dpkg -s package 查看
+
+
+
+ssh -p 77 luo@221.7.182.48

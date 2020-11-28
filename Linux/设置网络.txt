@@ -1,0 +1,33 @@
+固定IP
+
+地址（ip）：192.168.0.8
+网络掩码（mask）：24
+网关（gateway）：192.168.0.1
+DNS（DNS）：192.168.0.1
+
+
+
+安装nmtui
+ yum -y install nmtui 
+
+nmtui
+
+不选
+不选
+选
+选
+选
+
+重启网络连接
+
+systemctl restart network.service
+service network restart
+
+
+安装 ifconfig
+
+ yum -y install net-tools
+
+网络工具 
+ net-tools 
+ nmtui

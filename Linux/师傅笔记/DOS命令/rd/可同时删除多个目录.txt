@@ -1,0 +1,3 @@
+如：同时删除documents、regedit、software三个目录
+
+rd documents regedit software 或 rd documents,regedit,software

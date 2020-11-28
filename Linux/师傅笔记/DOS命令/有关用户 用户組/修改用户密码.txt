@@ -1,0 +1,5 @@
+修改用户密码："net user 用户名 密码"；或：输入"net user 用户名 *",按回车后输入密码.
+
+例1:更改系统管理员密码为"wggadmin"——"net user administrator wggadmin"；另一方法："net user administrator *"，输入wggadmin两次。
+
+例2:更改管理员密码为空密码——方法1："net user administrator ""(一对双引号) "；方法2："net user administrator *"，按两次回车。

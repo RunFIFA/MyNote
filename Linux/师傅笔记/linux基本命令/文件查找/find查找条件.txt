@@ -1,0 +1,11 @@
+﻿find查找条件
+
+find支持很多种的查找条件，常用的如下：
+
+-name ——文件名
+-perm ——权限
+-user ——用户
+-group ——用户组
+-ctime ——修改时间
+-type ——类型
+-size ——大小

@@ -1,0 +1,196 @@
+
+sudo -s 变为root用户
+
+硬连接 ln a(原文件) b(共同控制文本)
+软连接 ln -s a(原文件) b(相当于快捷方式)
+
+
+
+硬盘原理
+删除一个文件仅仅是删除文件名和硬盘上储存内容的部分的联系 但实质上文件还是在硬盘上的只有硬盘发生重写 文件才会丢失
+
+
+
+grep(文本中找关键字)
+grep 'a' ab.txt 在ab文本中查找含有a的行  ('^com'以com开头的文件  'com$'以com结尾的文件)
+-n 显示行数
+-t 忽略大小写
+-v 反选
+
+
+find (目录中找文件)
+find /home -name test.sh
+find /home -name '*.txt'
+find /home -size +2M
+
+
+
+cat a.txt b.txt > c.txt 将a和b文本的内容合并写入c中
+
+
+ls *.txt	任意多个
+ls *.t*t	任意多个
+ls *.t?t	任意一个
+ls *.t[abxn]t	abxn中任意一个
+ls *.t[a~f]t	a到f中任意一个
+
+ls * 查看当前目录文件 及文件夹一级目录
+
+
+cp -a 拷贝保持属性 -v查看进度
+
+-f 显示提示
+-i 忽略提示
+
+
+tar -cvf a.tar ./bb (打包 bb 成 a.tar)
+tar -xvf a.tar  (解包)    -C /home  将文件解压到 /home 下
+
+gzip a.tar (压缩)     =====>  tar=>tar.gz
+gzip -d a.tar.gz(解缩)	=====>  tar.gz=>tar
+
+
+tar -zcvf a.tar.gz * (打压包)			bzip2 压缩格式  打压包 tar -jcvf a.tar.bzip2
+tar -zxvf a.tar.gz  (解压包)			bzip2 压缩格式  解压缩 tar -jcvf a.tar.bzip2
+
+
+zip a.zip *
+unzip -d /home a.zip   (-d 解压到当前目录)
+
+
+ls > a.txt (输出覆盖文本)
+ls >> a.txt (输出但不覆盖文本)
+
+
+ls -alh | more 将ls输出用more显示
+
+
+终端中
+ctrl + a 最前
+ctrl + e 最后
+
+
+
+
+
+userdel abc 删用户名
+userdel -r abc 删用户名及文件
+groupadd aaa
+groupdel aaa
+
+
+查看用户所在组 groups laowang
+
+
+sudo useradd laowang -m(自动创建) -d(设置家目录) /home/laowang -g(指定组) sudo
+usermod -g root laowang(修改主要用户组)
+usermod -a -G xxx laowang(让laowang同时属于xxx组)
+
+
+用户组 cat /etc/group
+groupmod 加3次Tab键
+
+
+添加sudo权限 (添加用户所在组 共存组)
+sudo usermod -a -G adm
+sudo usermod -a -G sudo
+
+
+chmod	u 拥有者	r 读 4
+	g 同组者	w 写 2
+	o 其他人	x 执行 1
+
+cal 日历
+
+ps -aux 查看进程
+top 动态查看进程
+kill 杀杀杀
+
+
+
+poweroff 
+reboot
+shutdown -r now 关机
+shutdown -h now 重启
+shutdown -h 20:25 在20:25 关机
+shutdown -h +10  10分钟后关机  (shutdown -c 取消关机任务)
+init 0 关机
+init 6 重启
+
+
+
+配置spt源
+vim /etc/apt/source.list
+用清华源替换
+https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
+重新配置源
+apt update
+apt upgrade
+
+
+apt install 包名
+apt remove 包名
+apt search 包名 
+apt show 包名
+
+
+vim
+保存 两次shift加Z   等于:wq 等于:x 
+h左 j下 k上 l右
+
+3 yy 复制3行 (从当前行开始)
+dd 剪切
+p 粘贴
+
+u 撤销
+ctrl + r 反撤销
+
+G 尾行
+gg 首行
+15G 到指定行号
+
+
+gbk转uhf-8
+iconv -f gbk -t utf8 Mars.txt > Mars_new.txt
+
+
+b 上个单词
+w 下个单词
+
+{ 向上跳段
+} 向下跳段
+
+
+v可视
+X删除
+.重复命令
+
+vim l.txt +22 打开并跳到22行
+
+r图换
+/ ? 搜索
+
+
+替换 %s/abc/123/g  将所有abc替换成123
+1,10s/abc/123/g  将1到10行的abc替换成123
+
+:!ls  编辑时执行命令
+
+分屏 :vsp
+
+sudo uname --a 系统信息
+
+
+md5 : md5sum filename
+sha1 : sha1sum filename
+
+
+
+bash: /bin/XXXX: 没有那个文件或目录 解决:
+sudo apt-get install lib32ncurses5 lib32z1
+
+
+
+dpkg --list 查看所有安装的软件
+sudo apt remove --puge XXX 卸载
+sudo apt autoremove 自动卸载无用的软件

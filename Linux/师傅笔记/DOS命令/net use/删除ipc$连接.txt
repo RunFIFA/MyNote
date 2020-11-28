@@ -1,0 +1,1 @@
+例:删除与ws005-008的ipc$连接——net use \\ws005-008\ipc$ /del /yes

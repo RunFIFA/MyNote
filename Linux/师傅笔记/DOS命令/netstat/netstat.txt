@@ -1,0 +1,28 @@
+Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。
+
+常用参数：
+
+netstat——不加任何参数时，显示所有已建立的有效连接。
+
+netstat -n——显示所有已建立的有效连接（以数字形式显示地址和端口号）。
+
+netstat -a——本选项显示一个所有的有效连接信息列表，包括已建立的连接（ESTABLISHED），也包括监听连接请求（LISTENING）的那些连接，断开连接（CLOSE_WAIT）或者处于联机等待状态的（TIME_WAIT）等。
+
+netstat -an——与"netstat -a"相同，只不过是以数字形式显示地址和端口号。
+
+例：输入"netstat"显示如下：
+TCP    hjn-002:1620           123.151.47.54:http     ESTABLISHED
+TCP    hjn-002:1784           123.151.47.54:http     CLOSE_WAIT
+TCP    hjn-002:1854           58.68.226.66:http      CLOSE_WAIT
+TCP    hjn-002:1855           114.112.83.219:http    CLOSE_WAIT
+
+而输入"netstat -n"则是以数字形式显示地址和端口号，如下：
+TCP    172.16.4.108:1620      123.151.47.54:80       ESTABLISHED
+TCP    172.16.4.108:1784      123.151.47.54:80       CLOSE_WAIT
+TCP    172.16.4.108:1854      58.68.226.66:80        CLOSE_WAIT
+TCP    172.16.4.108:1855      114.112.83.219:80      CLOSE_WAIT
+
+
+
+
+

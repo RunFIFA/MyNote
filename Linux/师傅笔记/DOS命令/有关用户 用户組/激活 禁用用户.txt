@@ -1,0 +1,7 @@
+net user 用户名 /active:yes/no
+
+例子：
+
+net user guest /active:yes ——激活guest用户。
+
+net user guest /active:no ——禁用guest用户。

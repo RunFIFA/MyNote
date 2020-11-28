@@ -1,0 +1,1 @@
+开始->运行->netsh int ip reset c:\tmp.txt （即在“运行”里输入“netsh int ip reset c:\tmp.txt”，点“确定”即可,注意空格）

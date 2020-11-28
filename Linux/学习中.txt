@@ -1,0 +1,18 @@
+同步  sudo rsync 'ssh -P 77' -r --progress --delete /media/data/ /media/backup
+
+安装 cifs_utils
+挂载 sudo mount -t cifs -o username=administrator,password=123456,domain=PC //192.168.0.9/C$ /mnt
+
+
+
+Ubuntu的软件包格式是deb，如果要安装rpm的包，则要先用alien把rpm转换成deb。
+
+sudo apt-get install alien #alien默认没有安装，所以首先要安装它
+
+sudo alien xxxx.rpm #将rpm转换位deb，完成后会生成一个同名的xxxx.deb 
+
+
+安装deb
+sudo dpkg -i ./xxxx.deb
+若报错则
+sudo apt install -f

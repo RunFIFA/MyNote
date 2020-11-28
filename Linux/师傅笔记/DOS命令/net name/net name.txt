@@ -1,0 +1,4 @@
+添加或删除计算机上的消息名.
+
+语法: net name /add 新消息名
+      net name /delete 要删除的消息名

@@ -1,0 +1,11 @@
+lusrmgr.msc－－－－－本地用户和组
+services.msc－－－－－本地服务设置
+notepad－－－－－打开记事本
+compmgmt.msc－－－－－计算机管理
+devmgmt.msc－－－－－设备管理器
+calc－－－－－启动计算器
+sndrec32－－－－－录音机
+secpol.msc－－－－－本地安全策略
+fsmgmt.msc－－－－－共享文件夹管理器
+gpedit.msc－－－－－组策略
+taskmgr－－－－－任务管理器（2000／xp／2003）

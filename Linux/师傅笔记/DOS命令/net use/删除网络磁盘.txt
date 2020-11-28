@@ -1,0 +1,1 @@
+例:删除(断开)网络磁盘i盘——net use i: /del /yes
