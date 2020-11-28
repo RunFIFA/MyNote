@@ -32,4 +32,5 @@ keys exit expire expireat ttl persist
 
 redis-cli>
 
+a
 
