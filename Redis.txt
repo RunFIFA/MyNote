@@ -31,6 +31,3 @@ zadd zscore zincrby zcard zcount zrange
 keys exit expire expireat ttl persist
 
 redis-cli>
-
-a
-
