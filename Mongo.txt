@@ -1,4 +1,4 @@
-mongo：
+Mongo：
 
 mongodb启动：
 mongod --config /usr/local/mongo/mongodb.conf

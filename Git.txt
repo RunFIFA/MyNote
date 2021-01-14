@@ -4,9 +4,8 @@ https://github.com/RunFIFA/
 
 luo13612910852
 
-echo "# test" >> README.md
 git init //把这个目录变成Git可以管理的仓库
-git add README.md //文件添加到仓库
+echo "# test" >> README.md//增加说明文件git add README.md //文件添加到仓库
 git add . //不但可以跟单一文件，还可以跟通配符，更可以跟目录。
 git commit -m "first commit" //把文件提交到仓库
 git remote add origin https://github.com/RunFIFA/....git //关联远程仓库
@@ -15,3 +14,9 @@ git push -u origin main//把本地库的所有内容推送到远程库上
 git remote add origin https://github.com/RunFIFA/....git
 git branch -M master
 git push -u origin master
+
+更新
+git add .
+git commit -m "update"
+git pull
+git push origin main

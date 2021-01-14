@@ -1,15 +1,26 @@
 Docker：
 
-https://hub.daocloud.io/
+https://hub.daocloud.io
 daocloud.io/library/...
+
+加速器：
+"registry-mirrors":["https://q6zgmv50.mirror.aliyuncs.com"]
+systemctl daemon-reload
+systemctl restart docker
 
 docker pull ...
 docker image ls
-docker contianer ls
+docker container ls
 docker rmi ID
 docker save -o /usr ID
 docker load -i ..
 docker tag ID tomcat:8.5
+列出所有容器：docker ps -aq
+停止所有容器：docker stop $(docker ps -aq)
+删除所有容器：docker rm $(docker ps -aq)
+删除所有镜像：docker rmi $(docker images -aq)
+删除所有退出的容器：docker rm -v $(sudo docker ps -aq -f status=exited)
+
 
 
 
@@ -19,7 +30,6 @@ lychee-docker：
 可以设置一下开机启动：systemctl enable docker
 拉取lychee镜像：docker image pull kdelfour/lychee-docker
 启动lychee镜像：docker run -it -d -p 5120:80 kdelfour/lychee-docker 
-启动：docker run -it -d -p 5120:80 kdelfour/lychee-docker
 先停止运行的容器：docker container stop [container-id]
 然后删除容器：docker container rm [container-id]
 最后删除镜像：docker image rmi [image-id]
@@ -27,7 +37,7 @@ lychee-docker：
 
 
 
-docker-compose：
+Docker-compose：
 version: '3.1'
 services:
   mysql:           # 服务的名称
@@ -40,7 +50,7 @@ services:
       MYSQL_ROOT_PASSWORD: root   # 指定MySQL的ROOT用户登录密码
       TZ: Asia/Shanghai        # 指定时区
     volumes:
-     -/opt/docker_mysql_tomcat/mysql_data:/var/lib/mysql   # 映射数据卷
+     -./mysql_data/:/var/lib/mysql   # 映射数据卷
   tomcat:
     restart: always
     image: daocloud.io/library/tomcat:8.5.15-jre8
@@ -50,8 +60,8 @@ services:
     environment:
       TZ: Asia/Shanghai
     volumes:
-      -/opt/docker_mysql_tomcat/tomcat_webapps:/usr/local/tomcat/webapps
-      -/opt/docker_mysql_tomcat/tomcat_logs:/usr/local/tomcat/logs
+      -./tomcat_webapps/:/usr/local/tomcat/webapps
+      -./tomcat_logs/:/usr/local/tomcat/logs
 
 
 
@@ -77,3 +87,16 @@ services:
 docker-compose up -d
 docker-compose build
 docker-compose up -d --build
+
+
+
+修改docker中DNS：  
+ {
+           "dns": ["202.96.209.5","8.8.8.8"]
+  }
+systemctl daemon-reload
+systemctl restart docker
+
+详细笔记：
+https://www.lixian.fun/3812.html
+

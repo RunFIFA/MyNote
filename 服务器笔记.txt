@@ -10,3 +10,7 @@ Luo!123456
 
 查看端口占用：
 netstat -ntlp
+
+镜像源：
+https://mirrors.cnnic.cn/
+

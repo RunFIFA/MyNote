@@ -1,5 +1,5 @@
-40836796
-779770838
-970612740
-
-技术：kotlin ASP axure bootstrap django Redis springboot React jQuery Nginx Mocha cheerio Meteor pm2 koa wepy weui uniapp
+go gin beego grpc
+mysql reids mongo
+k8s docker
+node es6 express koa2
+Java Nginx

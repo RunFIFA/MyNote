@@ -1,4 +1,4 @@
-nodejs>
+Node：
 
 cnpm：npm install -g cnpm --registry=https://registry.npm.taobao.org
 
@@ -15,3 +15,4 @@ pm2使用：
 pm2 start app.js
 pm2 list
 pm2 monit
+

@@ -1,5 +1,6 @@
-redis：
+Redis：
 
+单机版compose：
 version: '3.1'
 services:
   redis: 
@@ -8,15 +9,97 @@ services:
     container_name: redis
     environment: 
       TZ: Asia/Shanghai
-    ports: - 6379:6379
+    ports:
+      -6379:6379
+    volumes: 
+      -./conf/redis.conf:/usr/local/redis/redis.conf
+    command: ["redis-server","/usr/local/redis/redis.conf"]
+
+主从架构compose：
+version: '3.1'
+services:
+  redis1: 	# 主redis
+    image: daocloud.io/library/redis
+    restart: always
+    container_name: redis1
+    environment: 
+      TZ: Asia/Shanghai
+    ports:
+      -7001:6379
+    volumes:
+      -./conf/redis1.conf:/usr/local/redis/redis.conf
+      -/.conf/sentinel1.conf:/data/sentinel.conf
+    command: ["redis-server","/usr/local/redis/redis.conf"]
+  redis2:	#  从redis
+    image: daocloud.io/library/redis
+    restart: always
+    container_name: redis2
+    environment: 
+      TZ: Asia/Shanghai
+    ports:
+      -7002:6379
+    volumes:
+      -./conf/redis2.conf:/usr/local/redis/redis.conf
+      -/.conf/sentinel2.conf:/data/sentinel.conf
+    links:
+      -redis1:master
+    command: ["redis-server","/usr/local/redis/redis.conf"]
+  redis3:	#  从redis
+    image: daocloud.io/library/redis
+    restart: always
+    container_name: redis3
+    environment: 
+      TZ: Asia/Shanghai
+    ports:
+      -7003:6379
+    volumes:
+      -./conf/redis3.conf:/usr/local/redis/redis.conf
+      -/.conf/sentinel3.conf:/data/sentinel.conf
+    links:
+      -redis1:master
+    command: ["redis-server","/usr/local/redis/redis.conf"]
+
+-----
+
+配置文件：/usr/local/redis/redis.conf
+
+conf/redis.conf
+
+requirepass 123456  # redis密码
+
+rdbcompression yes	# 开启RDB持久化压缩
+save 900 1	#RDB持久化
+save 300 10
+save 60 10000
+dbfilename redis.rdb	# RDB持久化文件名
+
+appendonly yes	#开启AOF持久化
+appendfilename redis.aof	#  AOF持久化文件名
+appendfsync always|everysec|no	#AOF持久化配置
+
+
+
+从节点redis.conf配置：
+replicaof master 6379
+
+
+
+哨兵配置sentinel.conf配置
+daemonize yes	# 哨兵需要后台启动
+#指定Master节点的ip和端口(主)
+sentinel monitor master localhost 6379 2
+#指定Master节点的ip和端口(从)
+sentinel monitor master master 6379 2
+sentinel down-after-milliseconds master 10000	# 监听时间
+运行哨兵：redis-sentinel sentinel.conf
 
 
 
 key-string：值，一对一个值
-:set mset setex setnx incr incrby append strlen
+set mset setex setnx incr incrby append strlen
 
 key-hash：Map，一对一个对象
-:hset hmset hincrby hsetnx hexits hdel hlen hvals hkeys hgetall
+hset hmset hincrby hsetnx hexits hdel hlen hvals hkeys hgetall
 
 key-list：列表，一对一个列表（有序，可重复）
 lpush lpushx lset lpop lrange rpoplpush llen lrem lindex
@@ -27,7 +110,17 @@ sadd spop srem smove smembers sismember srandmember scard
 key-zset：有序集合，一对一个有序集合
 zadd zscore zincrby zcard zcount zrange
 
-查看所有数据
-keys exit expire expireat ttl persist
+操作数据
+keys exit expire expireat ttl persist move
 
-redis-cli>
+操作库
+select flushdb flushall dbsize lastsave monitor
+
+事务
+multi ... exec/dicard  watch
+
+
+
+详细笔记：
+https://mp.weixin.qq.com/s/OPaiFDMrU5WXCFLFrsHfyA
+https://mp.weixin.qq.com/s/KoTVYhXy6zkCX2kn1Jyu6Q

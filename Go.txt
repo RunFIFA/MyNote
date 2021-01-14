@@ -1,0 +1,71 @@
+Go：
+
+设置编译环境：
+GOOS=linux
+SET GOARCH=amd64
+SET GOOS=windows
+SET GOOS=darwin
+
+var a []int
+var a map[string]int
+
+
+
+%d	输出数据
+%p	输出地址
+%T	输出类型
+%v	输出数值
+%#v	输出json
+
+
+
+详细笔记：
+https://www.liwenzhou.com/posts/Go/install_go_dev/
+
+len(a)
+cap(a)
+copy(a,b)
+
+
+obj := reflect.TypeOf(b)	# 输出变量类型
+fmt.Println(obj, obj.Name(), obj.Kind() )	# 输出变量值，类名，类的种类
+
+jsonStr,err := json.Marshal(c1)	# JSON序列化
+err = json.Unmarshal( []byte(jsonStr), &c2) 	# JSON反序列化
+
+
+
+多线程 并发：
+var wg sync.WaitGroup
+go hellow()
+wg.Add(1)
+wg.Done()
+wg.Wait()
+
+runtime.GOMAXPROCS(1)
+
+
+
+
+
+```
+Linux
+export GOPROXY=https://goproxy.io
+Windows环境变量
+GOPROXY:https://mirrors.aliyun.cn/goproxy/
+goland
+GOPROXY=https://goproxy.cn,direct
+```
+
+```
+go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+go mod init  # 初始化go.mod
+go mod tidy  # 更新依赖文件
+go mod download  # 下载依赖文件
+go mod vendor  # 将依赖转移至本地的vendor文件
+go mod edit  # 手动修改依赖文件
+go mod graph  # 打印依赖图
+go mod verify  # 校验依赖
+```
+

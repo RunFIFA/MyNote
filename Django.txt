@@ -13,3 +13,6 @@ Django:
 创建分目录：python manage.py startapp misterwu
 运行服务器：python manage.py runserver
 
+python pip修复
+python -m ensurepip
+python -m pip install --upgrade pip
